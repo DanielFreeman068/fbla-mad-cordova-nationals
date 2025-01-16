@@ -1,0 +1,6 @@
+[submodule "FBLA-MAD"]
+	path = FBLA-MAD
+	url = https://github.com/DerpNerdd/FBLA-MAD
+[submodule "fbla_mad_react"]
+	path = fbla_mad_react
+	url = https://github.com/DerpNerdd/fbla_mad_react

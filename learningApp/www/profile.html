@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">    
+    <link rel="stylesheet" href="./css/profile.css">
+    <title>JOLT || Profile</title>
+</head>
+<body>
+    <div class="navigation">
+        <ul>
+            <li class="list">
+                <a href="shop.html">
+                    <span class="icon">
+                        <ion-icon name="storefront-outline"></ion-icon>
+                    </span>
+                    <span class="text">Shop</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="test.html">
+                    <span class="icon">
+                        <ion-icon name="school-outline"></ion-icon>
+                    </span>
+                    <span class="text">Test</span>
+                </a>
+            </li>            
+            <li class="list">
+                <a id="home"  href="homepage.html">
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+                    <span class="text">Home</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="games.html">
+                    <span class="icon">
+                        <ion-icon name="game-controller-outline"></ion-icon>
+                    </span>
+                    <span class="text">Games</span>
+                </a>
+            </li>
+            <li class="list active">
+                <a href="profile.html">
+                    <span class="icon">
+                        <ion-icon name="person-circle-outline"></ion-icon>
+                    </span>
+                    <span class="text">Profile</span>
+                </a>
+            </li>
+            <div id="border-gradient-rounded" class="indicator"></div>
+        </ul>
+    </div>
+
+    <span class="settings" id="logout-btn">
+        <ion-icon name="log-out-outline"></ion-icon>
+    </span>
+    
+    <div class="banner" id="banner">
+        <!-- Banner Edit Icon -->
+        <div class="edit-banner-container">
+            <div class="edit-banner" id="edit-banner-icon">
+                <ion-icon name="pencil"></ion-icon>
+            </div>
+        </div>
+    </div>
+    
+    <div class="profile-container">
+        <div id="profile-pic" class="profile-pic"></div>
+        <div class="edit-icon" id="edit-profile-pic">
+            <ion-icon name="pencil"></ion-icon>
+        </div>
+    </div>
+    
+    
+    <!-- User Information -->
+    <div class="user-info">
+        <h1 id="full-name"></h1>
+    </div>
+    <div class="user-info-username">
+        <h1 id="username"></h1>
+    </div>
+    
+    <!-- XP Bar -->
+    <div class="info-container">
+        <div class="xp-container">
+            <div class="xp-bar" id="xp-bar"></div>
+        </div>
+        <div id="level-rectangle">Level 1</div>
+    </div>
+    
+    <div class="stats-grid">
+        <div class="stat-box">
+          <h3>Timer</h3>
+          <p id="timerValue">00:00</p>
+        </div>
+        <div class="stat-box">
+          <h3>Jeopardy</h3>
+          <p id="jeopardyValue">0</p>
+        </div>
+        <div class="stat-box">
+          <h3>Tic Tac Toe</h3>
+          <p id="ticTacToeValue">0</p>
+        </div>
+        <div class="stat-box">
+          <h3>Coins</h3>
+          <p id="coinsValue">0</p>
+        </div>
+      </div>
+      
+    <input type="file" id="banner-upload" style="display: none;">
+    <input type="file" id="profile-upload" style="display: none;">
+
+    <script>
+        const list = document.querySelectorAll('.list');
+
+        function activeLink(){
+            list.forEach((item) =>
+            item.classList.remove('active'));
+            this.classList.add('active');
+        }
+
+        list.forEach((item) =>
+            item.addEventListener('click', activeLink));
+    </script>
+    <script  type="module" src="./js/profile.js"></script>
+    <script  type="module" src="./js/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

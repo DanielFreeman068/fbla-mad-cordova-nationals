@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@font-face {
+    font-family: bubble;
+    src: url(../Fonts/Atop-R99O3.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Kanit", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    background-color: rgb(115, 115, 115);
+    height:100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(96, 98, 238);
+    background-image: url('../images/dusk-background.svg');
+    background-repeat: no-repeat;
+    background-size: 100vh;
+    background-attachment: fixed;
+}
+
+/* For the login/signup */
+.headerText{
+    font-family: bubble;
+    font-size:80px;
+    margin-top:1rem;
+    color: white;
+}
+
+.container {
+    width: 350px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn {
+    height: 60px;
+    width: 280px;
+    margin: 20px auto;
+    box-shadow: 10px 10px 30px rgb(198, 198, 198);
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.login {
+    font-size: 22px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+    color: white;
+    transition: all 0.5s ease-in-out;
+}
+.signup {
+    font-size: 22px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+    color: white;
+    transition: all 0.5s ease-in-out;
+}
+
+.magic {
+    color:black;
+}
+
+.btn button.active {
+    color: black;
+}
+
+.slider {
+    height: 60px;
+    width: 150px;
+    border-radius: 50px;
+    background-image: linear-gradient(to right,
+            rgb(110, 197, 255),
+            rgb(91, 178, 255));
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    transition: all 0.5s ease-in-out;
+}
+
+.moveslider {
+    left: 165px;
+}
+
+.form-section {
+    height: 500px;
+    width: 700px;
+    padding: 20px 0;
+    display: flex;
+    position: relative;
+    transition: all 0.5s ease-in-out;
+    left: 0px;
+}
+
+.form-section-move {
+    left: -400px;
+}
+
+.login-box{
+    height: fit-content;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 40px;
+}
+.signup-box {
+    height: fit-content;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 40px;
+    margin-left:50px;
+}
+
+input:first-of-type{
+    border-radius: 15px 15px 0 0;
+}
+input:last-of-type{
+    border-radius: 0 0 15px 15px;
+}
+
+.ele {
+    height: 70px;
+    width: 350px;
+    outline: none;
+    border: none;
+    color: rgb(77, 77, 77);
+    background-color: white;
+    padding-left: 30px;
+    font-size: 18px;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-color: rgb(105, 205, 242);
+    font-size: 15px;
+}
+
+.clkbtn-login {
+    height: 60px;
+    width: 150px;
+    border-radius: 50px;
+    background-image: linear-gradient(to right,
+            rgb(110, 211, 255),
+            rgb(91, 178, 255));
+    font-size: 22px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    margin-top:2rem;
+}
+
+.clkbtn-signup {
+    height: 60px;
+    width: 150px;
+    border-radius: 50px;
+    background-image: linear-gradient(to right,
+            rgb(110, 211, 255),
+            rgb(91, 178, 255));
+    font-size: 22px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    margin-top:2rem;
+}

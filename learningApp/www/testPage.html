@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>JOLT || Test Page</title>
+<link rel="stylesheet" href="./css/testPage.css">
+</head>
+    <body>
+        <h1 id="category-header"></h1>
+        <div id="quiz-container">
+            <button class="quit-button" id="quitButton">Quit</button>
+
+            <!-- The Modal -->
+            <div id="quitModal" class="quit-modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Are you sure you want to quit?</p>
+                    <button class="quit-button-confirm" id="confirmQuit">Confirm</button>
+                    <button class="quit-button-confirm" id="cancelQuit">Cancel</button>
+                </div>
+            </div>
+            <div id="quiz-card" class="quiz-card">
+            <h2 id="quiz-title" class="quiz-title"></h2>
+            <p id="quiz-question" class="quiz-question"></p>
+            </div>
+            <div id="quiz-choices-container" class="quiz-choices-container"></div>
+            <div id="quiz-footer" class="quiz-footer">
+            <button id="next-button" class="quiz-next-btn">Next Question</button>
+            </div>
+        </div>
+        <script  type="module" src="./js/categories.js"></script>
+    </body>
+</html>

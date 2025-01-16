@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>JOLT || Authenticate</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <h1 class="headerText">JOLT</h1>
+  <div class="container">
+    <div class="slider"></div>
+    <div class="btn">
+      <button class="login">Login</button>
+      <button class="signup">Signup</button>
+    </div>
+    <div class="form-section">
+      <div class="login-box">
+        <input type="email" class="ele" placeholder="youremail@email.com" id="login-email">
+        <input type="password" class="ele" placeholder="password" id="login-password">
+        <div class="google"></div>
+        <button type="submit" onclick="auth()" class="clkbtn-login">Login</button>
+      </div>
+      <div class="signup-box">
+        <input type="text" class="ele" placeholder="Enter your name">
+        <input type="email" class="ele" placeholder="youremail@email.com" id="signup-email">
+        <input type="password" class="ele" placeholder="password" id="signup-password">
+        <input type="password" class="ele" placeholder="Confirm password">
+        <div class="google"></div>
+        <button type="submit" onclick="auth()" class="clkbtn-signup">Signup</button>
+      </div>
+    </div>
+  </div>
+<script type="module" src="./js/script.js"></script>
+</body>
+</html>
