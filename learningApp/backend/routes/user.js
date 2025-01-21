@@ -4,7 +4,7 @@ const router = express.Router();
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const { cloudinary } = require("../utils/cloudinaryConfig"); // Make sure you have this file set up
+const { cloudinary } = require("../utils/CloudinaryConfig.js"); // Make sure you have this file set up
 
 // Middleware to check if user is authenticated
 function authMiddleware(req, res, next) {
