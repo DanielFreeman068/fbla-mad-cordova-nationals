@@ -1,0 +1,12 @@
+{
+    "android": {
+      "release": {
+        "keystore": "C:\\Users\\Alan Sanchez\\MyKeystores\\my-release-key.keystore",
+        "storePassword": "brawww456",
+        "alias": "joltapp",
+        "password": "brawww456",
+        "keystoreType": ""
+      }
+    }
+  }
+  
