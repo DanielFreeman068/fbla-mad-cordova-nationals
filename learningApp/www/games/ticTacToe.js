@@ -109,7 +109,7 @@ function updateXP(amount) {
     const userId = getUserIdFromToken(); // your user decode
     if (!userId) return;
   
-    fetch(`http://${config.IP}:3000/users/${userId}/xp`, {
+    fetch(`${config.IP}/users/${userId}/xp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -360,7 +360,7 @@ class TicTacToeGame {
           return;
         }
 
-        fetch(`http://${config.IP}:3000/tictactoe/win`, {
+        fetch(`${config.IP}/tictactoe/win`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -175,7 +175,7 @@ function updateXP(amount) {
     const userId = getUserIdFromToken(); // decode user ID from token
     if (!userId) return;
   
-    fetch(`http://${config.IP}:3000/users/${userId}/xp`, {
+    fetch(`${config.IP}/users/${userId}/xp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -312,7 +312,7 @@ if (button) {
       
         console.log("Posting finalScore =>", finalScore, typeof finalScore);
 
-        fetch(`http://${config.IP}:3000/jeopardy/score`, {
+        fetch(`${config.IP}/jeopardy/score`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

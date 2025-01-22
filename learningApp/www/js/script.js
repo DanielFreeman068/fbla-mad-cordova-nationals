@@ -49,7 +49,7 @@ window.auth = async function () {
     password = document.getElementById("login-password").value;
 
     try {
-      const response = await fetch(`http://${config.IP}:3000/auth/login`, {
+      const response = await fetch(`${config.IP}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -90,7 +90,7 @@ window.auth = async function () {
     const nameInput = document.querySelector('.signup-box input[type="text"]').value;
 
     try {
-      const response = await fetch(`http://${config.IP}:3000/auth/signup`, {
+      const response = await fetch(`${config.IP}/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

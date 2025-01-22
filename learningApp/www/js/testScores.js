@@ -19,7 +19,7 @@ async function fetchTestScores(subject) {
   }
 
   try {
-    const res = await fetch(`http://${config.IP}:3000/tests?subject=${subject}`, {
+    const res = await fetch(`${config.IP}/tests?subject=${subject}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (!res.ok) {

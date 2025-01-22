@@ -1,5 +1,5 @@
 const config = {
-    IP: "localhost",
+    IP: "https://brisbane-funeral-mineral-handhelds.trycloudflare.com",
   };
   
   export default config;

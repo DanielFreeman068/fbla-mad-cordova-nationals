@@ -125,7 +125,7 @@ function updateXP(amount) {
     const userId = getUserIdFromToken(); // decode user ID from token
     if (!userId) return;
   
-    fetch(`http://${config.IP}:3000/users/${userId}/xp`, {
+    fetch(`${config.IP}/users/${userId}/xp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -200,7 +200,7 @@ function recordTimerTimeOnServer(finalTime) {
   }
 
   // Post to /timerChallenge/time
-  fetch(`http://${config.IP}:3000/timerChallenge/time`, {
+  fetch(`${config.IP}/timerChallenge/time`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

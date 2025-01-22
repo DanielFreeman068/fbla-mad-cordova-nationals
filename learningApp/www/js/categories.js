@@ -232,7 +232,7 @@ function recordTestScoreOnServer(subject, date, score) {
       return;
     }
   
-    fetch(`http://${config.IP}:3000/tests/score`, {
+    fetch(`${config.IP}/tests/score`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
