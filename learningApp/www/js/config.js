@@ -1,5 +1,5 @@
 const config = {
-    IP: "https://stay-detail-coaches-securities.trycloudflare.com",
+    IP: "https://backup-lexmark-fit-drawing.trycloudflare.com",
   };
   
   export default config;
