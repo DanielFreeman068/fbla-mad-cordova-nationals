@@ -1,5 +1,6 @@
 import config from '../js/config.js';
 
+const usedQuestions = [];
 
 const QUESTIONS = [
     // Science Questions
@@ -186,8 +187,14 @@ class TicTacToeGame {
         const questionText = document.getElementById('question-text');
         const answerButtons = document.getElementById('answer-buttons');
 
-        // Select a random question
-        const question = QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)];
+        // Select a random question that hasn't been used yet
+        let question;
+        do {
+            question = QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)];
+        } while (usedQuestions.includes(question));
+
+        // Mark the question as used
+        usedQuestions.push(question);
 
         // Set question text
         questionText.textContent = question.question;

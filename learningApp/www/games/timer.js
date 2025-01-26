@@ -1,5 +1,6 @@
 import config from '../js/config.js';
 
+const usedQuestions = [];
 
 const questions = {
     math: [
@@ -219,10 +220,20 @@ function recordTimerTimeOnServer(finalTime) {
 }
 
 function askQuestion() {
+  // Reset the used questions if all have been shown
+  if (usedQuestions.length === questions.length) {
+    usedQuestions.length = 0; // Clear the array
+  }
+
+  do{
     const categories = Object.keys(questions);
     const category = categories[Math.floor(Math.random() * categories.length)];
     const categoryQuestions = questions[category];
     currentQuestion = categoryQuestions[Math.floor(Math.random() * categoryQuestions.length)];
+  } while (usedQuestions.includes(currentQuestion));
+
+  // Mark the question as used
+  usedQuestions.push(currentQuestion);
 
     document.querySelector('.question').textContent = currentQuestion.question;
     const optionsContainer = document.querySelector('.options');

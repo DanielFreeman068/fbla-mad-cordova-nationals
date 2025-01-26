@@ -1,5 +1,25 @@
 import config from './config.js';
 
+// Shuffle function to randomize an array
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// Function to get a specified number of unique random questions from a category
+function getRandomQuestions(category, count) {
+    if (!questionPool[category]) {
+        console.error(`Category "${category}" does not exist.`);
+        return [];
+    }
+
+    const shuffledQuestions = shuffleArray([...questionPool[category]]);
+    return shuffledQuestions.slice(0, count);
+}
+
 const questionPool = {
     math: [
         { question: "What is 8 × 7?", choices: ["58", "56", "64", "54"], correctAnswer: "56" },
@@ -109,7 +129,34 @@ const questionPool = {
         { question: "Which continent is known as the 'Dark Continent'?", choices: ["Africa", "Asia", "Australia", "South America"], correctAnswer: "Africa" },
         { question: "What is the capital city of Italy?", choices: ["Rome", "Milan", "Venice", "Florence"], correctAnswer: "Rome" },
         { question: "Which country has the most volcanoes?", choices: ["Indonesia", "Japan", "USA", "Italy"], correctAnswer: "Indonesia" }
-    ]
+    ],
+    english: [
+        { question: "What is the synonym of 'happy'?", choices: ["Sad", "Joyful", "Angry", "Tired"], correctAnswer: "Joyful" },
+        { question: "Which word is a noun?", choices: ["Run", "Quick", "Happiness", "Bright"], correctAnswer: "Happiness" },
+        { question: "What is the antonym of 'difficult'?", choices: ["Easy", "Challenging", "Hard", "Tough"], correctAnswer: "Easy" },
+        { question: "Which is a verb?", choices: ["Jump", "Beautiful", "Smart", "Quickly"], correctAnswer: "Jump" },
+        { question: "What is the plural form of 'child'?", choices: ["Childs", "Children", "Childes", "Childrens"], correctAnswer: "Children" },
+        { question: "Which sentence is grammatically correct?", choices: ["She are happy.", "They is running.", "We was tired.", "He is tall."], correctAnswer: "He is tall." },
+        { question: "What is the past tense of 'run'?", choices: ["Ran", "Runned", "Running", "Runs"], correctAnswer: "Ran" },
+        { question: "What type of word is 'quickly'?", choices: ["Noun", "Verb", "Adjective", "Adverb"], correctAnswer: "Adverb" },
+        { question: "Which word is spelled correctly?", choices: ["Recieve", "Receive", "Recievee", "Reiceve"], correctAnswer: "Receive" },
+        { question: "What is a synonym for 'big'?", choices: ["Tiny", "Large", "Narrow", "Small"], correctAnswer: "Large" },
+        { question: "Which is an example of an interjection?", choices: ["Wow!", "And", "Because", "During"], correctAnswer: "Wow!" },
+        { question: "What is the comparative form of 'good'?", choices: ["Gooder", "Best", "Better", "Goodest"], correctAnswer: "Better" },
+        { question: "Which word is a preposition?", choices: ["With", "Quick", "Play", "Beautiful"], correctAnswer: "With" },
+        { question: "Which sentence is in future tense?", choices: ["I run fast.", "I will run fast.", "I ran fast.", "I am running fast."], correctAnswer: "I will run fast." },
+        { question: "What is the subject in the sentence 'The cat is sleeping'?", choices: ["Cat", "Sleeping", "Is", "The"], correctAnswer: "Cat" },
+        { question: "What is the object in the sentence 'She read the book'?", choices: ["She", "Read", "The", "Book"], correctAnswer: "Book" },
+        { question: "Which word is a conjunction?", choices: ["And", "Blue", "Quickly", "Sing"], correctAnswer: "And" },
+        { question: "Which is an example of a declarative sentence?", choices: ["What is your name?", "Run fast!", "She likes apples.", "Wow, that's amazing!"], correctAnswer: "She likes apples." },
+        { question: "What is the superlative form of 'fast'?", choices: ["Faster", "Fastest", "More fast", "Most fast"], correctAnswer: "Fastest" },
+        { question: "What is the correct form of the verb in 'She _____ to school every day'?", choices: ["Go", "Goes", "Going", "Went"], correctAnswer: "Goes" },
+        { question: "What is a synonym for 'start'?", choices: ["Finish", "Begin", "End", "Stop"], correctAnswer: "Begin" },
+        { question: "What is the antonym of 'hot'?", choices: ["Warm", "Cold", "Heat", "Cool"], correctAnswer: "Cold" },
+        { question: "Which word is a pronoun?", choices: ["She", "Run", "Blue", "Slowly"], correctAnswer: "She" },
+        { question: "What type of sentence is 'Close the door!'?", choices: ["Interrogative", "Imperative", "Exclamatory", "Declarative"], correctAnswer: "Imperative" },
+        { question: "Which sentence uses the correct article?", choices: ["I saw an eagle.", "She is a honest person.", "We bought a apple.", "He found the hourglass."], correctAnswer: "I saw an eagle." }
+    ]    
 };
 
 // Get category from the URL
@@ -120,16 +167,16 @@ const category = urlParams.get('category');
 const categoryHeader = document.getElementById('category-header');
 categoryHeader.textContent = `${category} Test`;
 
+const randomQuestions = getRandomQuestions(category, 25);
+
 // Retrieve and display questions for the selected category
-const quizQuestions = questionPool[category] || [];
+const quizQuestions = randomQuestions || [];
 
 let currentQuestion = 0;
 let score = 0;
 let isCorrect = false;
 let selectedAnswer = null;
 
-const scoreElement = document.getElementById("score");
-const quizCard = document.getElementById("quiz-card");
 const quizTitle = document.getElementById("quiz-title");
 const quizQuestion = document.getElementById("quiz-question");
 const choicesContainer = document.getElementById("quiz-choices-container");
@@ -193,7 +240,7 @@ const showScorePopup = () => {
     const finalScore = score; // out of 25
     const subjectName = category; // from URL param
     const dateNow = new Date().toISOString(); // or any date format
-  
+
     // 1) Save to server
     recordTestScoreOnServer(subjectName, dateNow, finalScore);
 
@@ -228,26 +275,26 @@ const showScorePopup = () => {
 function recordTestScoreOnServer(subject, date, score) {
     const token = localStorage.getItem("authToken");
     if (!token) {
-      console.error("No auth token found");
-      return;
+    console.error("No auth token found");
+    return;
     }
-  
+
     fetch(`${config.IP}/tests/score`, {
-      method: "POST",
-      headers: {
+    method: "POST",
+    headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`
-      },
-      body: JSON.stringify({ subject, date, score })
+    },
+    body: JSON.stringify({ subject, date, score })
     })
-      .then(res => res.json())
-      .then(data => {
+    .then(res => res.json())
+    .then(data => {
         console.log("Test score saved:", data);
-      })
-      .catch(err => {
+    })
+    .catch(err => {
         console.error("Error saving test score:", err);
-      });
-  }
+    });
+}
 
 nextButton.onclick = handleNext;
 
