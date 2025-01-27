@@ -474,3 +474,29 @@ svg{
         font-size: 2rem;
         color: #4a90e2;
     }
+
+    @media (max-width: 400px) {
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* side info styling */
+        .side-info-1 {
+            top: 58%;
+        }
+        .side-info-2 {
+            top: 58%;
+        }
+        .side-info-3 {
+            top: 33%;
+        }
+        .side-info-4 {
+            top: 33%;
+        }
+    }  
