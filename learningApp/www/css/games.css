@@ -313,7 +313,7 @@ body {
         height: 350px;
     }
     .jeopardy-icon {
-        margin: 0 auto 10px auto;
+        margin: 0 auto;
     }
     .game-icon {
         margin-bottom: 10px;
@@ -323,5 +323,11 @@ body {
     }
     .game-title {
         font-size: 1.3rem;
+    }
+    .play-link {
+        padding: 10px 0;
+        width: 150px;
+        border-radius: 25px;
+        font-size: 1rem;
     }
 }  
