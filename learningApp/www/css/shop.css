@@ -286,3 +286,33 @@ body {
     font-size: 1.25rem;
     color: rgba(255, 255, 255, 1);
 }
+
+.shop-grid {
+    display: grid;
+    gap: 30px;
+    padding: 20px;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 15px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+
+.shop-item {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.buy-btn {
+    background: #FFD700;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
