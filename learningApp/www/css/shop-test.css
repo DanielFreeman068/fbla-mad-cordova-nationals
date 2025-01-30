@@ -6,16 +6,33 @@
     box-sizing: border-box;
 }
 
-/* Body Structure */
+/* shop-test.css override for the body */
 body {
-    font-family: 'Kanit', sans-serif;
-    background: linear-gradient(180deg, #1a365d 0%, #2b6cb0 100%);
-    color: white;
-    min-height: 100vh;
-    padding-bottom: 70px; /* Space for navigation */
+    /* Keep the same background from homeStyle */
+    background-color: rgb(96, 98, 238);
+    background-image: url('../images/dusk-background.svg');
+    background-repeat: no-repeat;
+    background-size: 100vh;
+    background-attachment: fixed;
+  
+    /* Make sure it can scroll */
     overflow-x: hidden;
-    overflow-y: auto; /* Enable scrolling */
-}
+    overflow-y: auto;
+  
+    /* If you don't want flex centering, remove these: */
+    display: block;
+    justify-content: normal;
+    align-items: normal;
+  
+    /* Keep min-height so the page can expand */
+    min-height: 100vh;
+  
+    /* your other styles as needed */
+    font-family: 'Kanit', sans-serif;
+    color: #fff;
+    padding-bottom: 70px; /* space for nav */
+  }
+  
 
 /* Content Wrapper */
 .content-wrapper {

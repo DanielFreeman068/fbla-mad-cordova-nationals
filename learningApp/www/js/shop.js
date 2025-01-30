@@ -17,10 +17,9 @@ class InventoryManager {
         if (this.isOwned(itemId)) {
             const category = this.getItemCategory(itemId);
             // Unequip other items in same category
-            this.inventory.equippedItems = 
-                this.inventory.equippedItems.filter(id => 
-                    this.getItemCategory(id) !== category
-                );
+            this.inventory.equippedItems = this.inventory.equippedItems.filter(id =>
+                this.getItemCategory(id) !== category
+            );
             this.inventory.equippedItems.push(itemId);
             this.save();
         }
@@ -35,7 +34,9 @@ class InventoryManager {
     }
 
     getItemCategory(itemId) {
-        return Object.entries(shopItems).find(([category, items]) => 
+        // shopItems is created at the bottom: new ShopManager()
+        // We find which category has an item with matching itemId
+        return Object.entries(shopItems).find(([category, items]) =>
             items.some(item => item.id === itemId)
         )[0];
     }
@@ -48,13 +49,23 @@ class InventoryManager {
 class ShopManager {
     constructor() {
         this.inventoryManager = new InventoryManager();
+
+        /**
+         * 1) We define the full list of categories (hats, shirts, shorts, shoes, accessories, backpack).
+         * 2) Each category calls createItems('someBaseName', itemCount, rarities).
+         *    - The baseName is used for item IDs and display names.
+         *    - The itemCount is how many items per category (e.g., 6).
+         *    - The rarities array is cycled. 
+         */
         this.items = {
-            hats: this.createItems('hat', 6, ['common', 'rare', 'epic']),
-            clothing: this.createItems('shirt', 6, ['common', 'rare', 'legendary']),
-            shoes: this.createItems('shoe', 6, ['common', 'epic']),
-            eyewear: this.createItems('glasses', 6, ['rare', 'legendary'])
+            hats:        this.createItems('hat', 6, ['common', 'rare', 'epic']),
+            shirts:      this.createItems('shirt', 6, ['common', 'rare', 'epic']),
+            shorts:      this.createItems('shorts', 6, ['common', 'rare', 'epic']),
+            shoes:       this.createItems('shoes', 6, ['common', 'rare', 'epic']),
+            accessories: this.createItems('accessory', 6, ['common', 'rare', 'epic']),
+            backpack:    this.createItems('backpack', 6, ['common', 'rare', 'epic'])
         };
-        
+
         this.initShop();
     }
 
@@ -62,22 +73,34 @@ class ShopManager {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
+    /**
+     * This method returns a relevant Ionicon based on category name.
+     * You can change these to whichever icons you prefer.
+     */
     getCategoryIcon(category) {
         const icons = {
-            hats: 'baseball-cap-outline',
-            clothing: 'shirt-outline',
-            shoes: 'footsteps-outline',
-            eyewear: 'glasses-outline'
+            hats:        'baseball-cap-outline', // or 'person-circle-outline'
+            shirts:      'shirt-outline',
+            shorts:      'cut-outline',          // Ionicons doesn't have a perfect "shorts" icon; do whatever you like
+            shoes:       'footsteps-outline',
+            accessories: 'diamond-outline',      // or 'ribbon-outline', 'glasses-outline', etc.
+            backpack:    'bag-handle-outline'    // or 'briefcase-outline'
         };
         return icons[category] || 'cube-outline';
     }
 
+    /**
+     * Creates an array of items for a given baseName, count, and rarities.
+     * - e.g., baseName='hat' -> 'Hat 1', 'Hat 2', ...
+     * - `price` picks from [100, 250, 500, 750] repeating each item
+     * - `img` is set to 'cap.png' for now (change if you want different images)
+     */
     createItems(baseName, count, rarities) {
         return Array.from({ length: count }, (_, i) => ({
             id: `${baseName}-${i + 1}`,
             name: `${this.capitalize(baseName)} ${i + 1}`,
             price: [100, 250, 500, 750][i % 4],
-            img: `${baseName}-${i + 1}.png`,
+            img: 'cap.png',
             rarity: rarities[i % rarities.length]
         }));
     }
@@ -112,32 +135,66 @@ class ShopManager {
     }
 
     createItemCard(item) {
+        // Create the outer card container
         const card = document.createElement('div');
         card.className = `shop-item ${item.rarity} loading`;
-        card.innerHTML = `
-            <div class="loading-spinner"></div>
-            <img src="img/clothes/${item.img}" class="item-image" 
-                 alt="${item.name}" onload="this.parentElement.classList.remove('loading')">
-            <div class="item-details">
-                <h4 class="item-name">${item.name}</h4>
-                <div class="item-price">
-                    <ion-icon name="logo-bitcoin"></ion-icon>
-                    <span>${item.price.toLocaleString()}</span>
-                </div>
-                <button class="buy-btn" data-item="${item.id}">
-                    ${this.inventoryManager.isOwned(item.id) ? 'EQUIP' : 'BUY'}
-                </button>
-            </div>
-        `;
 
+        // Spinner
+        const spinner = document.createElement('div');
+        spinner.className = 'loading-spinner';
+        card.appendChild(spinner);
+
+        // The item image
+        const imgEl = document.createElement('img');
+        // If your images are in 'images/clothes/', ensure 'cap.png' is placed there.
+        imgEl.src = `images/clothes/${item.img}`;
+        imgEl.classList.add('item-image');
+        imgEl.alt = item.name;
+
+        // Once it loads, remove the "loading" class (to hide the spinner)
+        imgEl.addEventListener('load', () => {
+            card.classList.remove('loading');
+            spinner.remove(); // remove the spinner from the DOM
+        });
+        // If it fails, remove spinner + maybe swap to a placeholder
+        imgEl.addEventListener('error', () => {
+            card.classList.remove('loading');
+            imgEl.src = 'images/placeholder.png';
+        });
+
+        card.appendChild(imgEl);
+
+        // The item-details container
+        const detailsEl = document.createElement('div');
+        detailsEl.className = 'item-details';
+        detailsEl.innerHTML = `
+            <h4 class="item-name">${item.name}</h4>
+            <div class="item-price">
+                <ion-icon name="logo-bitcoin"></ion-icon>
+                <span>${item.price.toLocaleString()}</span>
+            </div>
+            <button class="buy-btn" data-item="${item.id}">
+                ${this.inventoryManager.isOwned(item.id) ? 'EQUIP' : 'BUY'}
+            </button>
+        `;
+        card.appendChild(detailsEl);
+
+        // If owned/equipped, add badges
         if (this.inventoryManager.isOwned(item.id)) {
-            card.innerHTML += '<div class="owned-badge">OWNED</div>';
+            const ownedBadge = document.createElement('div');
+            ownedBadge.className = 'owned-badge';
+            ownedBadge.textContent = 'OWNED';
+            card.appendChild(ownedBadge);
         }
         if (this.inventoryManager.isEquipped(item.id)) {
-            card.innerHTML += '<div class="equipped-badge">EQUIPPED</div>';
+            const equippedBadge = document.createElement('div');
+            equippedBadge.className = 'equipped-badge';
+            equippedBadge.textContent = 'EQUIPPED';
+            card.appendChild(equippedBadge);
         }
 
-        const button = card.querySelector('.buy-btn');
+        // Button event
+        const button = detailsEl.querySelector('.buy-btn');
         button.addEventListener('click', () => this.handleItemInteraction(item));
         
         return card;
@@ -152,7 +209,9 @@ class ShopManager {
     }
 
     purchaseItem(item) {
-        const currentCoins = parseInt(document.getElementById('coin-balance').textContent.replace(/,/g, ''));
+        const currentCoins = parseInt(
+            document.getElementById('coin-balance').textContent.replace(/,/g, '')
+        );
         
         if (currentCoins >= item.price) {
             this.inventoryManager.addItem(item);
@@ -171,8 +230,12 @@ class ShopManager {
     }
 
     refreshItemCard(itemId) {
-        const card = document.querySelector(`[data-item="${itemId}"]`)?.closest('.shop-item');
+        // Look for the card with data-item="itemId"
+        const card = document
+            .querySelector(`[data-item="${itemId}"]`)
+            ?.closest('.shop-item');
         if (card) {
+            // Replace with a fresh card
             const newCard = this.createItemCard(this.getItemById(itemId));
             card.parentNode.replaceChild(newCard, card);
         }
