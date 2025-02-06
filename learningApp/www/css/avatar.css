@@ -1,0 +1,240 @@
+/* Base Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body Styles */
+  body {
+    background-color: rgb(96, 98, 238);
+    background-image: url('../images/dusk-background.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Kanit', sans-serif;
+    color: #fff;
+    padding-bottom: 70px; /* space for bottom nav */
+  }
+  
+  /* Main Content Wrapper */
+  .content-wrapper {
+    padding: 80px 15px 20px; /* space for fixed header */
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  /* Header */
+  .avatar-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #2b6cb0 0%, #1a365d 100%);
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    text-align: center;
+  }
+  
+  .avatar-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  /* Avatar Preview Area */
+  .avatar-preview-wrapper {
+    margin-top: 100px; /* leave space for fixed header */
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Extended preview container – note: overflow is now visible so accessories aren’t clipped */
+  .avatar-preview {
+    position: relative;
+    width: 320px;   /* slightly wider than before */
+    height: 430px;  /* increased height accordingly */
+    margin: 0 auto;
+    /* No border/outline and no overflow clipping */
+    overflow: visible;
+  }
+  
+  /* --- Base, Color, and Skin Layers --- */
+  /* These layers now use a smaller scale so they don’t take up the entire container.
+     This leaves room for accessories (which may be shifted far left) without being clipped. */
+  #base-layer,
+  #color-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 320px;
+    height: 430px;
+    object-fit: cover;
+    transform: scale(0.85); /* reduced scale */
+  }
+  
+  /* Skin layer: made a bit smaller and adjusted so the bottom isn’t cut off.
+     (Translation removed from the vertical axis to keep the bottom visible.) */
+  #skin-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 320px;
+    height: 430px;
+    object-fit: cover;
+    transform: translate(5px, 0) scale(0.85); /* scaled down and shifted right slightly */
+  }
+  
+  /* --- Accessory Layer --- */
+  /* Moved further to the left and made a bit bigger */
+  #accessory-layer {
+    position: absolute;
+    width: 90px;  /* slightly bigger */
+    height: auto;
+    bottom: 60px; /* stays as before */
+    left: 0px;    /* flush to the left */
+    object-fit: contain;
+  }
+  
+  /* --- Eyewear Layer --- */
+  /* Made a bit bigger and moved down a little */
+  #eyewear-layer {
+    position: absolute;
+    width: 110px; /* increased size */
+    height: auto;
+    top: 80px;    /* moved down */
+    left: calc(50% - 55px);
+    object-fit: contain;
+  }
+  
+  /* --- Hat Layer --- */
+  /* Made bigger and moved further down */
+  #hat-layer {
+    position: absolute;
+    width: 120px; /* increased size */
+    height: auto;
+    top: 40px;    /* moved further down */
+    left: calc(50% - 60px);
+    object-fit: contain;
+  }
+  
+  /* Items Selector */
+  .items-selector {
+    margin-top: 20px;
+  }
+  
+  /* Tabs */
+  .tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+  }
+  
+  .tab-button {
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    padding: 5px 10px;
+    color: #fff;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .tab-button.active,
+  .tab-button:hover {
+    background: #fff;
+    color: #2b6cb0;
+  }
+  
+  /* Clear Selection Button */
+  .clear-btn {
+    background: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    color: #2b6cb0;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background 0.2s ease;
+  }
+  
+  .clear-btn:hover {
+    background: #e0e0e0;
+  }
+  
+  /* Items Grid */
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* more columns since images are small */
+    gap: 5px;
+    padding: 0 5px;
+  }
+  
+  /* Each Item Card */
+  .item-card {
+    background: linear-gradient(145deg, #2d3748 0%, #1a202c 100%);
+    border-radius: 6px;
+    overflow: hidden;
+    text-align: center;
+    padding: 3px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .item-card img {
+    width: 100%;
+    height: 40px;  /* smaller images */
+    object-fit: contain;
+  }
+  
+  .item-card:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Navigation (copied from your shop page) */
+  .navigation {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: #fff;
+    z-index: 2000;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navigation ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    list-style: none;
+  }
+  
+  .navigation .list a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #2b6cb0;
+    font-size: 0.8rem;
+  }
+  
+  .navigation .list.active a {
+    color: #1a365d;
+  }
+  
+  #border-gradient-rounded {
+    position: absolute;
+    bottom: 0;
+    height: 4px;
+    width: 20%;
+    background: linear-gradient(90deg, #48bb78, #4299e1);
+    border-radius: 10px;
+    transition: left 0.3s ease;
+  }
+  

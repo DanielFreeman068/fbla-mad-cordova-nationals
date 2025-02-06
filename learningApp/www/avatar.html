@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="./css/avatar.css" />
+  <title>Avatar Creator</title>
+</head>
+<body>
+  <!-- Fixed Header -->
+  <div class="avatar-header">
+    <h1>Avatar Creator</h1>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <!-- Avatar Preview Area -->
+    <div class="avatar-preview-wrapper">
+      <div class="avatar-preview">
+        <!-- Layer 1: Base (Always Clear.png) -->
+        <img id="base-layer" src="images/clothes/Colors/Clear.png" alt="Base" class="layer" />
+        <!-- Layer 2: Color (from Colors tab) -->
+        <img id="color-layer" src="" alt="Color" class="layer" />
+        <!-- Layer 3: Skin -->
+        <img id="skin-layer" src="" alt="Skin" class="layer" />
+        <!-- Layer 4: Accessory -->
+        <img id="accessory-layer" src="" alt="Accessory" class="layer" />
+        <!-- Layer 5: Eyewear -->
+        <img id="eyewear-layer" src="" alt="Eyewear" class="layer" />
+        <!-- Layer 6: Hat (optional) -->
+        <img id="hat-layer" src="" alt="Hat" class="layer" />
+      </div>
+    </div>
+
+    <!-- Items Selector -->
+    <div class="items-selector">
+      <!-- Tabs for each category -->
+      <div class="tabs">
+        <button class="tab-button active" data-category="colors">Colors</button>
+        <button class="tab-button" data-category="skins">Skins</button>
+        <button class="tab-button" data-category="accessories">Accessories</button>
+        <button class="tab-button" data-category="eyewear">Eyewear</button>
+        <button class="tab-button" data-category="hats">Hats</button>
+      </div>
+      <!-- Clear Selection Button -->
+      <button id="clear-selection" class="clear-btn">Clear Selection</button>
+      <!-- Grid where item cards will be injected -->
+      <div class="items-grid"></div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation (structure similar to your shop page) -->
+  <div class="navigation">
+    <ul>
+      <li class="list">
+        <a href="shop-test.html">
+          <span class="icon"><ion-icon name="storefront-outline"></ion-icon></span>
+          <span class="text">Shop</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="avatar.html">
+          <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+          <span class="text">Avatar</span>
+        </a>
+      </li>
+      <li class="list active">
+        <a id="home" href="homepage.html">
+          <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+          <span class="text">Home</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="games.html">
+          <span class="icon"><ion-icon name="game-controller-outline"></ion-icon></span>
+          <span class="text">Games</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="profile.html">
+          <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+          <span class="text">Profile</span>
+        </a>
+      </li>
+      <div id="border-gradient-rounded" class="indicator"></div>
+    </ul>
+  </div>
+
+  <!-- Ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <!-- Avatar Creator Logic -->
+  <script src="./js/avatar.js"></script>
+
+  <!-- Navigation Active Highlight Script -->
+  <script>
+    const list = document.querySelectorAll(".list");
+    function activeLink() {
+      list.forEach((item) => item.classList.remove("active"));
+      this.classList.add("active");
+    }
+    list.forEach((item) => item.addEventListener("click", activeLink));
+  </script>
+</body>
+</html>
