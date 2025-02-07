@@ -5,25 +5,27 @@
     box-sizing: border-box;
   }
   
-  /* Body Styles */
   body {
     background-color: rgb(96, 98, 238);
     background-image: url('../images/dusk-background.svg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100vh;  /* as in homeStyles.css */
     background-attachment: fixed;
     font-family: 'Kanit', sans-serif;
     color: #fff;
-    padding-bottom: 70px; /* space for bottom nav */
+    overflow-x: hidden;
+    overflow-y: auto;   /* allow vertical scrolling */
+    /* Do not use display: flex; let content flow normally */
   }
   
-  /* Main Content Wrapper */
+  
   .content-wrapper {
-    padding: 80px 15px 20px; /* space for fixed header */
+    padding: 80px 15px 20px; /* increased bottom padding from 20px to 90px */
     max-width: 400px;
     margin: 0 auto;
     text-align: center;
   }
+  
   
   /* Header */
   .avatar-header {
@@ -44,7 +46,6 @@
   
   /* Avatar Preview Area */
   .avatar-preview-wrapper {
-    margin-top: 100px; /* leave space for fixed header */
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
@@ -53,75 +54,245 @@
   /* Extended preview container – note: overflow is now visible so accessories aren’t clipped */
   .avatar-preview {
     position: relative;
-    width: 320px;   /* slightly wider than before */
-    height: 430px;  /* increased height accordingly */
+    width: 320px;
+    height: 430px;
     margin: 0 auto;
-    /* No border/outline and no overflow clipping */
+    top: -40px;
     overflow: visible;
   }
   
   /* --- Base, Color, and Skin Layers --- */
   /* These layers now use a smaller scale so they don’t take up the entire container.
      This leaves room for accessories (which may be shifted far left) without being clipped. */
-  #base-layer,
-  #color-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 320px;
-    height: 430px;
-    object-fit: cover;
-    transform: scale(0.85); /* reduced scale */
-  }
+     #base-layer,
+     #color-layer {
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 320px;
+       height: 430px;
+       object-fit: cover;
+       transform: scale(0.85);
+     }
+     
   
   /* Skin layer: made a bit smaller and adjusted so the bottom isn’t cut off.
      (Translation removed from the vertical axis to keep the bottom visible.) */
-  #skin-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 320px;
-    height: 430px;
-    object-fit: cover;
-    transform: translate(5px, 0) scale(0.85); /* scaled down and shifted right slightly */
-  }
+     #skin-layer {
+      position: absolute;
+      bottom: 0;                    /* Align the bottom of the image with the container */
+      left: 50%;                    /* Center horizontally */
+      transform: translate(calc(-50% + 9px), -52px);
+      height: 90%;                 /* Scale the image so its height fits the container */
+      width: auto;                  /* Maintain aspect ratio */
+      object-fit: contain;          /* Ensure the entire image is visible */
+      object-position: bottom center;  /* Ensure the bottom of the image is prioritized */
+    }
+    
   
   /* --- Accessory Layer --- */
-  /* Moved further to the left and made a bit bigger */
   #accessory-layer {
     position: absolute;
-    width: 90px;  /* slightly bigger */
+    width: 100px;  /* slightly bigger */
     height: auto;
-    bottom: 60px; /* stays as before */
+    bottom: 60px; /* base vertical offset */
     left: 0px;    /* flush to the left */
     object-fit: contain;
+    /* Fine-tune the position: move 2px further left and 3px upward */
+    transform: translate(-25px, -12px);
+    /* Ensure the image aligns to the left and bottom of its box */
+    object-position: left bottom;
   }
   
-  /* --- Eyewear Layer --- */
-  /* Made a bit bigger and moved down a little */
+  
   #eyewear-layer {
     position: absolute;
-    width: 110px; /* increased size */
-    height: auto;
-    top: 80px;    /* moved down */
-    left: calc(50% - 55px);
     object-fit: contain;
   }
   
-  /* --- Hat Layer --- */
-  /* Made bigger and moved further down */
-  #hat-layer {
+  /* For cyberpunk.png and superhero_mask.png */
+  .eyewear-cyberpunk {
+    width: 173px;
+    height: auto;
+    top: 128px;
+    left: calc(50% - 87px);
+    transform: translate(2px, 3px);
+    object-position: center bottom;
+  }
+  
+  /* For round_glasses.png and sunglasses.png */
+  .eyewear-round {
+    width: 130px;
+    height: auto;
+    top: 139px;
+    left: calc(50% - 50px);
+    transform: translate(2px, 3px);
+    object-position: center bottom;
+  }
+  
+  /* For scuba_goggles.png */
+  .eyewear-scuba {
+    width: 190px;
+    height: auto;
+    top: 62px;
+    left: calc(50% - 106px);
+    transform: translate(2px, 3px);
+    object-position: center bottom;
+  }
+  
+  /* For monocle.png */
+  .eyewear-monocle {
+    width: 92px;
+    height: auto;
+    top: 126px;
+    /* Note: calc(50% - -8px) is equivalent to calc(50% + 8px) */
+    left: calc(50% + 8px);
+    transform: translate(2px, 3px);
+    object-position: center bottom;
+  }
+  
+  
+/* ----- Custom Hat Classes ----- */
+
+/* For plant_sprout.png */
+.hat-plant_sprout {
+  position: absolute;
+  width: 50px;
+  height: auto;
+  top: -21px;
+  left: calc(50% - 35px);
+  object-fit: contain;
+}
+
+/* For spartan_mask.png */
+.hat-spartan_mask {
+  position: absolute;
+  width: 134px;
+  height: auto;
+  top: 64px;
+  left: calc(50% - 59px);
+  object-fit: contain;
+}
+
+/* For beanie.png */
+.hat-beanie {
+  position: absolute;
+  width: 116px;
+  height: auto;
+  top: 56px;
+  left: calc(50% - 49px);
+  object-fit: contain;
+}
+
+/* For cap.png */
+.hat-cap {
+  position: absolute;
+  width: 126px;
+  height: auto;
+  top: 43px;
+  left: calc(50% - 53px);
+  object-fit: contain;
+}
+
+/* For cowboy_hat.png */
+.hat-cowboy_hat {
+  position: absolute;
+  width: 200px;
+  height: auto;
+  top: 13px;
+  left: calc(50% - 90px);
+  object-fit: contain;
+}
+
+/* For graduation_cap.png */
+.hat-graduation_cap {
+  position: absolute;
+  width: 168px;
+  height: auto;
+  top: 43px;
+  left: calc(50% - 90px);
+  object-fit: contain;
+}
+
+/* For heart_clip.png */
+/* Note: calc(50% - -15px) is equivalent to calc(50% + 15px) */
+.hat-heart_clip {
+  position: absolute;
+  width: 80px;
+  height: auto;
+  top: 74px;
+  left: calc(50% + 15px);
+  object-fit: contain;
+}
+
+/* For magic_hat.png */
+.hat-magic_hat {
+  position: absolute;
+  width: 144px;
+  height: auto;
+  top: -30px;
+  left: calc(50% - 63px);
+  object-fit: contain;
+}
+
+/* For military_helmet.png */
+.hat-military_helmet {
+  position: absolute;
+  width: 158px;
+  height: auto;
+  top: 57px;
+  left: calc(50% - 67px);
+  object-fit: contain;
+}
+
+/* For pirate_hat.png */
+.hat-pirate_hat {
+  position: absolute;
+  width: 180px;
+  height: auto;
+  top: 39px;
+  left: calc(50% - 73px);
+  object-fit: contain;
+}
+
+/* For sunhat.png */
+.hat-sunhat {
+  position: absolute;
+  width: 299px;
+  height: auto;
+  top: 39px;
+  left: calc(50% - 137px);
+  object-fit: contain;
+}
+
+/* For tophat.png */
+.hat-tophat {
+  position: absolute;
+  width: 165px;
+  height: auto;
+  top: 14px;
+  left: calc(50% - 75px);
+  object-fit: contain;
+}
+
+    /* --- Face Layer --- */
+  #face-layer {
     position: absolute;
-    width: 120px; /* increased size */
-    height: auto;
-    top: 40px;    /* moved further down */
-    left: calc(50% - 60px);
+    bottom: 209px;
+    left: 55%;
+    transform: translateX(-50%);
+    width: 118px;
+    height: 430px;
     object-fit: contain;
+    object-position: bottom center;
   }
   
-  /* Items Selector */
   .items-selector {
-    margin-top: 20px;
+    margin-top: 10px;
+    max-height: calc(100vh - 560px);
+    top: -70px;
+    position: relative;
+    padding-right: 5px;
   }
   
   /* Tabs */
@@ -194,47 +365,147 @@
     transform: scale(1.1);
   }
   
-  /* Navigation (copied from your shop page) */
   .navigation {
-    position: fixed;
+    min-width: 100%;
+    height: 70px;
     bottom: 0;
     left: 0;
-    right: 0;
-    height: 70px;
     background: #fff;
-    z-index: 2000;
-    border-radius: 10px 10px 0 0;
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .navigation ul {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-    list-style: none;
-  }
-  
-  .navigation .list a {
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #2b6cb0;
-    font-size: 0.8rem;
-  }
-  
-  .navigation .list.active a {
-    color: #1a365d;
-  }
-  
-  #border-gradient-rounded {
     position: absolute;
-    bottom: 0;
-    height: 4px;
-    width: 20%;
-    background: linear-gradient(90deg, #48bb78, #4299e1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 10px;
-    transition: left 0.3s ease;
-  }
-  
+}
+
+.content {
+    padding: 16px;
+}
+
+.sticky {
+    position: fixed;
+    bottom: -1;
+    width: 100%;
+}
+
+.sticky + .content {
+    padding-top: 60px;
+}
+
+.navigation ul {
+    display: flex;
+    width: 350px;
+}
+
+.navigation ul li {
+    position: relative;
+    list-style: none;
+    width: 70px;
+    height: 70px;
+    z-index: 1;
+}
+
+.navigation ul li a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+
+.navigation ul li a .icon {
+    position: relative;
+    display: block;
+    line-height: 75px;
+    font-size: 1.5em;
+    text-align: center;
+    color: rgb(91, 178, 255);
+}
+
+.navigation ul li.active a .icon {
+    transform: translateY(-32px);
+}
+
+.navigation ul li a .text {
+    position: absolute;
+    color: rgb(91, 178, 255);
+    font-weight: 400;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.navigation ul li.active a .text {
+    opacity: 1;
+    transform: translateY(10px);
+}
+
+.indicator {
+    position: absolute;
+    top: -50%;
+    width: 70px;
+    height: 70px;
+    background: #29bdfd;
+    border-radius: 50%;
+    border: 6px solid transparent;
+    border-image: linear-gradient(45deg, rgb(0, 195, 255) , yellow);
+    border-image-slice: 1;
+}
+
+#border-gradient-rounded {
+    border: 4px solid transparent;
+    border-radius: 50%;
+    background: 
+        linear-gradient(to right, white, #e1f2ff), 
+        linear-gradient(190deg, rgb(110, 211, 255),rgb(91, 178, 255));
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+}
+
+.indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -21px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top-right-radius: 20px;
+    box-shadow: 1px -10px 0 0 var(--clr);
+}
+
+.indicator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -21px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top-left-radius: 20px;
+    box-shadow: -1px -10px 0 0 var(--clr);
+}
+
+.navigation ul li:nth-child(1).active ~ .indicator {
+    transform: translateX(calc(70px * 0))
+}
+
+.navigation ul li:nth-child(2).active ~ .indicator {
+    transform: translateX(calc(70px * 1))
+}
+
+.navigation ul li:nth-child(3).active ~ .indicator {
+    transform: translateX(calc(70px * 2))
+}
+
+.navigation ul li:nth-child(4).active ~ .indicator {
+    transform: translateX(calc(70px * 3))
+}
+
+.navigation ul li:nth-child(5).active ~ .indicator {
+    transform: translateX(calc(70px * 4))
+}
