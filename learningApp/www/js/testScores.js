@@ -57,7 +57,7 @@ function renderLeaderboard(data) {
 
 // Keep your existing "updateButtonSelection" if you want
 function updateButtonSelection() {
-  const subjects = ["math", "science", "history", "geography"];
+  const subjects = ["math", "science", "history", "english"];
   subjects.forEach(subject => {
     const button = document.getElementById(`${subject.toLowerCase()}-button`);
     if (subject === selectedSubject) {

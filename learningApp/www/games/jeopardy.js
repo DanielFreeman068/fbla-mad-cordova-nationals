@@ -75,43 +75,44 @@ const questionPool = {
         { q: "What is the chemical symbol for mercury?", a: "Hg" }
     ]
     },
-    Geography: {
+    English: {
     100: [
-        { q: "What is the capital of Japan?", a: "Tokyo" },
-        { q: "What is the largest ocean on Earth?", a: "Pacific" },
-        { q: "On which continent is Egypt located?", a: "Africa" },
-        { q: "What is the capital of Canada?", a: "Ottawa" },
-        { q: "Which country is known for the Great Wall?", a: "China" }
+        { q: "What is the synonym of 'happy'?", a: "Joyful" },
+        { q: "Which word is a noun?", a: "Happiness" },
+        { q: "What is the antonym of 'difficult'?", a: "Easy" },
+        { q: "Which is a verb?", a: "Jump" },
+        { q: "What is the plural form of 'child'?", a: "Children" }
     ],
     200: [
-        { q: "Which continent is the largest by land area?", a: "Asia" },
-        { q: "What is the capital of Brazil?", a: "Brasilia" },
-        { q: "Which is the longest river in the world?", a: "Nile" },
-        { q: "Which country has the most people?", a: "China" },
-        { q: "Which country is the largest in Africa?", a: "Algeria" }
+        { q: "Which sentence is grammatically correct?", a: "He is tall." },
+        { q: "What is the past tense of 'run'?", a: "Ran" },
+        { q: "What type of word is 'quickly'?", a: "Adverb" },
+        { q: "Which word is spelled correctly?", a: "Receive" },
+        { q: "What is a synonym for 'big'?", a: "Large" }
     ],
     300: [
-        { q: "Which country is known as the Land of Fire and Ice?", a: "Iceland" },
-        { q: "What is the capital of Australia?", a: "Canberra" },
-        { q: "Which is the smallest continent?", a: "Australia" },
-        { q: "Which country is home to the Eiffel Tower?", a: "France" },
-        { q: "What is the largest island in the world?", a: "Greenland" }
+        { q: "Which is an example of an interjection?", a: "Wow!" },
+        { q: "What is the comparative form of 'good'?", a: "Better" },
+        { q: "Which word is a preposition?", a: "With" },
+        { q: "Which sentence is in future tense?", a: "I will run fast." },
+        { q: "What is the subject in the sentence 'The cat is sleeping'?", a: "Cat" }
     ],
     400: [
-        { q: "Which desert is the largest cold desert in the world?", a: "Antarctica" },
-        { q: "What is the deepest point on Earth?", a: "Mariana Trench" },
-        { q: "What is the capital of South Africa?", a: "Pretoria" },
-        { q: "Which country has the largest population?", a: "India" },
-        { q: "Which river flows through Paris?", a: "Seine" }
+        { q: "What is the object in the sentence 'She read the book'?", a: "Book" },
+        { q: "Which word is a conjunction?", a: "And" },
+        { q: "Which is an example of a declarative sentence?", a: "She likes apples." },
+        { q: "What is the superlative form of 'fast'?", a: "Fastest" },
+        { q: "What is the correct form of the verb in 'She _____ to school every day'?", a: "Goes" }
     ],
     500: [
-        { q: "Through how many time zones does Russia span?", a: "11" },
-        { q: "What is the highest waterfall in the world?", a: "Angel Falls" },
-        { q: "Which country has the most islands in the world?", a: "Sweden" },
-        { q: "What is the capital of Egypt?", a: "Cairo" },
-        { q: "Which ocean is the smallest?", a: "Arctic" }
+        { q: "What is a synonym for 'start'?", a: "Begin" },
+        { q: "What is the antonym of 'hot'?", a: "Cold" },
+        { q: "Which word is a pronoun?", a: "She" },
+        { q: "What type of sentence is 'Close the door!'?", a: "Imperative" },
+        { q: "Which sentence uses the correct article?", a: "I saw an eagle." }
     ]
     },
+    
     History: {
     100: [
         { q: "In which year did World War II end?", a: "1945" },
