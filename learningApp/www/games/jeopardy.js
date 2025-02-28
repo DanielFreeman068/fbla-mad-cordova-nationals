@@ -76,42 +76,43 @@ const questionPool = {
     ]
     },
     English: {
-    100: [
-        { q: "What is the synonym of 'happy'?", a: "Joyful" },
-        { q: "Which word is a noun?", a: "Happiness" },
-        { q: "What is the antonym of 'difficult'?", a: "Easy" },
-        { q: "Which is a verb?", a: "Jump" },
-        { q: "What is the plural form of 'child'?", a: "Children" }
-    ],
-    200: [
-        { q: "Which sentence is grammatically correct?", a: "He is tall." },
-        { q: "What is the past tense of 'run'?", a: "Ran" },
-        { q: "What type of word is 'quickly'?", a: "Adverb" },
-        { q: "Which word is spelled correctly?", a: "Receive" },
-        { q: "What is a synonym for 'big'?", a: "Large" }
-    ],
-    300: [
-        { q: "Which is an example of an interjection?", a: "Wow!" },
-        { q: "What is the comparative form of 'good'?", a: "Better" },
-        { q: "Which word is a preposition?", a: "With" },
-        { q: "Which sentence is in future tense?", a: "I will run fast." },
-        { q: "What is the subject in the sentence 'The cat is sleeping'?", a: "Cat" }
-    ],
-    400: [
-        { q: "What is the object in the sentence 'She read the book'?", a: "Book" },
-        { q: "Which word is a conjunction?", a: "And" },
-        { q: "Which is an example of a declarative sentence?", a: "She likes apples." },
-        { q: "What is the superlative form of 'fast'?", a: "Fastest" },
-        { q: "What is the correct form of the verb in 'She _____ to school every day'?", a: "Goes" }
-    ],
-    500: [
-        { q: "What is a synonym for 'start'?", a: "Begin" },
-        { q: "What is the antonym of 'hot'?", a: "Cold" },
-        { q: "Which word is a pronoun?", a: "She" },
-        { q: "What type of sentence is 'Close the door!'?", a: "Imperative" },
-        { q: "Which sentence uses the correct article?", a: "I saw an eagle." }
-    ]
+        100: [
+            { q: "What word means the opposite of 'sad'?", a: "Happy" },
+            { q: "What part of speech is the word 'happiness'?", a: "Noun" },
+            { q: "What is the opposite of 'difficult'?", a: "Easy" },
+            { q: "Which word means 'to jump' or 'to run'?", a: "Verb" },
+            { q: "What is the plural form of 'child'?", a: "Children" }
+        ],
+        200: [
+            { q: "Which sentence is correct: 'He is tall' or 'He are tall'?", a: "He is tall." },
+            { q: "What is the past tense of 'run'?", a: "Ran" },
+            { q: "Which part of speech describes how an action is performed?", a: "Adverb" },
+            { q: "What is the correct spelling: 'Recieve' or 'Receive'?", a: "Receive" },
+            { q: "Identify the verb in the following sentence: 'The quick brown fox jumps over the lazy dog.'", a: "jumps" },
+        ],
+        300: [
+            { q: "An abrupt remark, made especially as an aside or interruption.", a: "Interjection" },
+            { q: "What is the comparative form of 'good'?", a: "Better" },
+            { q: "Which word is a preposition: 'With' or 'Play'?", a: "With" },
+            { q: "Rewrite this sentence in future tense: 'I run fast.'", a: "I will run fast." },
+            { q: "What is the subject in the sentence 'The cat is sleeping'?", a: "Cat" }
+        ],
+        400: [
+            { q: "What is the object in the sentence 'She read the book'?", a: "Book" },
+            { q: "Which word joins two clauses: 'And' or 'Blue'?", a: "And" },
+            { q: "Which type of sentence states a fact: 'She likes apples.' or 'What is your name?'?", a: "She likes apples." },
+            { q: "What is the superlative form of 'fast'?", a: "Fastest" },
+            { q: "Select the sentence that uses a semicolon correctly:\n\nA) I have a big test tomorrow; I can't go out tonight.\nB) I have a big test tomorrow, I can't go out tonight.", a: "A" }
+        ],
+        500: [
+            { q: "Choose the sentence with correct subject-verb agreement:\n\nA) The team are playing well.\nB) The team is playing well.", a: "B" },
+            { q: "What is the opposite of 'hot'?", a: "Cold" },
+            { q: "Which word replaces a noun in a sentence, such as 'she' or 'they'?", a: "Pronoun" },
+            { q: "What type of sentence gives a command?", a: "Imperative" },
+            { q: "True or False does this sentence properly use a hyphen 'She is a well-known author.", a: "True" }
+        ]
     },
+    
     
     History: {
     100: [
