@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>JOLT || Authenticate</title>
   <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -18,6 +18,7 @@
       <div class="login-box">
         <input type="email" class="ele" placeholder="youremail@email.com" id="login-email">
         <input type="password" class="ele" placeholder="password" id="login-password">
+        <a href="#" class="forgot-password" onclick="showResetForm()">Forgot Password?</a>
         <div class="google"></div>
         <button type="submit" onclick="auth()" class="clkbtn-login">Login</button>
       </div>
@@ -31,6 +32,11 @@
       </div>
     </div>
   </div>
-<script type="module" src="./js/script.js"></script>
+  <script type="module" src="./js/script.js"></script>
+  <script>
+    function showResetForm() {
+      window.location.href = "password-reset.html";
+    }
+  </script>
 </body>
 </html>

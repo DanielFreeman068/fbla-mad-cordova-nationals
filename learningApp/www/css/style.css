@@ -187,3 +187,7 @@ input:last-of-type{
     color: #fff;
     margin-top:2rem;
 }
+
+.clkbtn-reset {
+    color:red;
+}
