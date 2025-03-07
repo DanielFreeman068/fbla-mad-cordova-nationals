@@ -55,7 +55,9 @@ const userSchema = new mongoose.Schema({
       date: { type: Date, required: true },
       score: { type: Number, required: true }
     }
-  ]
+  ],
+  resetToken: { type: String },
+  resetTokenExpire: { type: Date },
 });
 
 module.exports = mongoose.model("User", userSchema);

@@ -1,5 +1,5 @@
 const config = {
-    IP: "https://cincinnati-associates-request-modeling.trycloudflare.com",
+    IP: "http://localhost:3000",
   };
   
   export default config;
