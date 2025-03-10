@@ -55,7 +55,7 @@ app.post("/forgot-password", async (req, res) => {
   if (!user) return res.status(404).json({ message: "User not found!" });
 
   // Generate reset token
-  const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "1h" });
+  const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "15min" });
 
   // Save token to DB
   user.resetToken = token;
