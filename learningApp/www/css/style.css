@@ -191,3 +191,13 @@ input:last-of-type{
 .clkbtn-reset {
     color:red;
 }
+
+.forgot-password {
+    color:white;
+    margin-top: 5rem;
+    font-size: 16px;
+}
+
+.forgot-password:hover {
+    color:rgb(194, 193, 193);
+}
