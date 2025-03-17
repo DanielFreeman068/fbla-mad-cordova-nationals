@@ -1,5 +1,5 @@
 const config = {
-    IP: "http://localhost:3000",
+    IP: "https://subscribe-registrar-transaction-legs.trycloudflare.com",
   };
   
   export default config;
