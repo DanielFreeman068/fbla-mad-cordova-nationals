@@ -1,5 +1,5 @@
 const config = {
-    IP: "https://shirt-told-nearly-administered.trycloudflare.com",
+    IP: "https://adolescent-accessing-fought-naval.trycloudflare.com",
     // IP: "http://localhost:3000"
   };
   
