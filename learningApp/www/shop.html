@@ -1,100 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">    
-    <link rel="stylesheet" href="./css/shop.css">
-    <title>JOLT || Shop</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="./css/avatar.css" />
+  <title>Avatar Creator</title>
 </head>
 <body>
-    <div class="shopTitle">
-    <h1>SHOP</h1>
+  <!-- Fixed Header with Back Button -->
+  <div class="avatar-header">
+    <a href="profile.html" class="back-btn">&larr; Back</a>
+    <h1>Avatar Creator</h1>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <!-- Avatar Preview Area -->
+    <div class="avatar-preview-wrapper">
+      <div class="avatar-preview">
+        <!-- Layer 1: Base (Always Clear.png) -->
+        <img id="base-layer" src="images/clothes/Colors/Clear.png" alt="Base" class="layer" />
+        <!-- Layer 2: Color (from Colors tab) -->
+        <img id="color-layer" src="" alt="Color" class="layer" />
+        <!-- Layer 3: Skin -->
+        <img id="skin-layer" src="" alt="Skin" class="layer" />
+        <!-- Layer 4: Accessory -->
+        <img id="accessory-layer" src="" alt="Accessory" class="layer" />
+        <!-- NEW: Layer 5: Face (always present) -->
+        <img id="face-layer" src="images/clothes/face_anim.gif" alt="Face" class="layer" />
+        <!-- Layer 6: Eyewear -->
+        <img id="eyewear-layer" src="" alt="Eyewear" class="layer" />
+        <!-- Layer 7: Hat (optional) -->
+        <img id="hat-layer" src="" alt="Hat" class="layer" />
+      </div>
     </div>
 
-    <div class="coins"></div>
-
-    <div class="sale"></div>
-
-    <div class="container">
-        <h1>Coming Soon</h1>
-        <p>Something exciting is in the works. Stay tuned!</p>
+    <!-- Items Selector -->
+    <div class="items-selector">
+      <!-- Tabs for each category -->
+      <div class="tabs">
+        <button class="tab-button active" data-category="colors">Colors</button>
+        <button class="tab-button" data-category="skins">Skins</button>
+        <button class="tab-button" data-category="accessories">Accessories</button>
+        <button class="tab-button" data-category="eyewear">Eyewear</button>
+        <button class="tab-button" data-category="hats">Hats</button>
+      </div>
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button id="clear-selection" class="clear-btn">Clear Selection</button>
+        <button id="save-avatar-btn" class="save-avatar-btn">Save Avatar</button>
+      </div>
+      <!-- Grid where item cards will be injected -->
+      <div class="items-grid"></div>
     </div>
+  </div>
 
-    <div class="shop">
-        <span class="costumes">
-            <h1>COSTUMES</h1>
-        </span>
-        <div id="box" class="one"></div>
-        <div id="box" class="two"></div>
-        <div id="box" class="three"></div>
-        <div id="box" class="four"></div>
-        <div id="box" class="five"></div>
-        <div id="box" class="six"></div>
-        <div id="box" class="seven"></div>
-        <div id="box" class="eight"></div>
-        <div id="box" class="nine"></div>
+  <!-- Save Avatar Modal -->
+  <div id="save-avatar-modal" class="modal">
+    <div class="modal-content">
+      <h2>Save Your Avatar?</h2>
+      <button id="confirm-save-avatar">Save</button>
+      <button id="cancel-save-avatar">Cancel</button>
     </div>
+  </div>
 
-    <div class="navigation">
-        <ul>
-            <li class="list active">
-                <a href="shop.html">
-                    <span class="icon">
-                        <ion-icon name="storefront-outline"></ion-icon>
-                    </span>
-                    <span class="text">Shop</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="test.html">
-                    <span class="icon">
-                        <ion-icon name="school-outline"></ion-icon>
-                    </span>
-                    <span class="text">Test</span>
-                </a>
-            </li>            
-            <li class="list">
-                <a id="home"  href="homepage.html">
-                    <span class="icon">
-                        <ion-icon name="home-outline"></ion-icon>
-                    </span>
-                    <span class="text">Home</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="games.html">
-                    <span class="icon">
-                        <ion-icon name="game-controller-outline"></ion-icon>
-                    </span>
-                    <span class="text">Games</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="profile.html">
-                    <span class="icon">
-                        <ion-icon name="person-circle-outline"></ion-icon>
-                    </span>
-                    <span class="text">Profile</span>
-                </a>
-            </li>
-            <div id="border-gradient-rounded" class="indicator"></div>
-        </ul>
-    </div>
+  <!-- Bottom Navigation (structure similar to your shop page) -->
+  <div class="navigation">
+    <ul>
+      <li class="list active">
+        <a href="shop-test.html">
+          <span class="icon"><ion-icon name="storefront-outline"></ion-icon></span>
+          <span class="text">Shop</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="test.html">
+          <span class="icon"><ion-icon name="school-outline"></ion-icon></span>
+          <span class="text">Test</span>
+        </a>
+      </li>
+      <li class="list">
+        <a id="home" href="homepage.html">
+          <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+          <span class="text">Home</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="games.html">
+          <span class="icon"><ion-icon name="game-controller-outline"></ion-icon></span>
+          <span class="text">Games</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="profile.html">
+          <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+          <span class="text">Profile</span>
+        </a>
+      </li>
+      <div id="border-gradient-rounded" class="indicator"></div>
+    </ul>
+  </div>
 
-    <script>
-        const list = document.querySelectorAll('.list');
+  <!-- Ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-        function activeLink(){
-            list.forEach((item) =>
-            item.classList.remove('active'));
-            this.classList.add('active');
-        }
+  <!-- Avatar Creator Logic -->
+  <script type="module" src="./js/avatar.js"></script>
 
-        list.forEach((item) =>
-            item.addEventListener('click', activeLink));
-    </script>
-    <!-- <script src="script.js"></script> -->
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <!-- Navigation Active Highlight Script -->
+  <script>
+    const list = document.querySelectorAll(".list");
+    function activeLink() {
+      list.forEach(item => item.classList.remove("active"));
+      this.classList.add("active");
+    }
+    list.forEach(item => item.addEventListener("click", activeLink));
+  </script>
 </body>
 </html>

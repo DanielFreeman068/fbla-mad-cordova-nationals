@@ -1,4 +1,3 @@
-// models/User.js
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
@@ -23,7 +22,7 @@ const userSchema = new mongoose.Schema({
     type: Number,
     default: 1
   },
-  // Cloudinary URLs
+  // Cloudinary URLs for profile & banner pictures
   profilePicture: {
     type: String,
     default: "https://res.cloudinary.com/dmrevelyc/image/upload/v1736633601/default_aeldkt.webp"
@@ -32,7 +31,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "https://res.cloudinary.com/dmrevelyc/image/upload/v1736639379/defaultbanner_hnbtpb.webp"
   },
-  // Some mock data for side info
+  // Side info data
   jeopardyScore: {
     type: Number,
     default: 0
@@ -43,7 +42,7 @@ const userSchema = new mongoose.Schema({
   },
   coins: {
     type: Number,
-    default: 0
+    default: 2500  // Set default coins for testing
   },
   timerChallengeTime: {
     type: Number,
@@ -58,6 +57,13 @@ const userSchema = new mongoose.Schema({
   ],
   resetToken: { type: String },
   resetTokenExpire: { type: Date },
+  // New field to store purchased clothing items
+  ownedItems: {
+    type: [String],
+    default: []
+  },
+  avatar: { type: Object, default: {} }
+
 });
 
 module.exports = mongoose.model("User", userSchema);

@@ -14,6 +14,8 @@ const ticTacToeRoutes = require("./routes/ticTacToe");
 const jeopardyRoutes = require("./routes/jeopardy");
 const timerChallengeRoutes = require("./routes/timerChallenge");
 const testRoutes = require("./routes/test");
+const shopRoutes = require("./routes/shop");
+
 
 const app = express();
 
@@ -113,6 +115,8 @@ app.use("/tictactoe", ticTacToeRoutes);
 app.use("/jeopardy", jeopardyRoutes);
 app.use("/timerChallenge", timerChallengeRoutes);
 app.use("/tests", testRoutes);
+app.use("/shop", shopRoutes);
+
 
 app.get("/", (req, res) => {
   res.send("Hello from the backend!");

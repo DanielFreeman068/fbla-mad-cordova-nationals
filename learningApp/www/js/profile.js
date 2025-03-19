@@ -164,3 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   
+  document.getElementById("edit-avatar-btn").addEventListener("click", () => {
+    window.location.href = "avatar.html";
+  });

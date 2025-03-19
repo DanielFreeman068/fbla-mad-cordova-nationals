@@ -155,4 +155,34 @@ router.post("/:id/uploadBanner", authMiddleware, async (req, res) => {
   }
 });
 
+// POST /users/:id/avatar => Save avatar configuration
+router.post("/:id/avatar", authMiddleware, async (req, res) => {
+  try {
+    if (req.params.id !== req.user.id) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+
+    const { avatar } = req.body;
+    if (!avatar || typeof avatar !== "object") {
+      return res.status(400).json({ message: "Invalid avatar data" });
+    }
+
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    // Update the user's avatar field
+    user.avatar = avatar;
+    await user.save();
+
+    return res.status(200).json({
+      message: "Avatar saved successfully",
+      avatar: user.avatar
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Server error" });
+  }
+});
+
+
 module.exports = router;

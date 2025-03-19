@@ -319,7 +319,7 @@
     color: #2b6cb0;
   }
   
-  /* Clear Selection Button */
+  /* Clear Selection Button
   .clear-btn {
     background: #fff;
     border: none;
@@ -334,7 +334,7 @@
   
   .clear-btn:hover {
     background: #e0e0e0;
-  }
+  } */
   
   /* Items Grid */
   .items-grid {
@@ -508,4 +508,79 @@
 
 .navigation ul li:nth-child(5).active ~ .indicator {
     transform: translateX(calc(70px * 4))
+}
+
+/* Action Buttons Container */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Clear Selection & Save Avatar Buttons */
+.clear-btn, .save-avatar-btn {
+  background: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  color: #2b6cb0;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.clear-btn:hover, .save-avatar-btn:hover {
+  background: #e0e0e0;
+}
+
+/* Back Button in Header */
+.back-btn {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-decoration: none;
+  font-size: 1rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 5px 10px;
+  border-radius: 5px;
+  z-index: 1100;
+}
+
+
+/* Save Avatar Modal */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2200;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.modal-content button {
+  margin: 10px;
+  padding: 8px 16px;
+  background: #fff;
+  color: #2b6cb0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

@@ -35,6 +35,15 @@
     function showResetForm() {
       window.location.href = "password-reset.html";
     }
+
+    document.addEventListener("deviceready", function() {
+    // Check if auth token exists in localStorage (or use your preferred persistent storage)
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      // If token exists, redirect to homepage.html
+      window.location.href = "homepage.html";
+    }
+  }, false);
   </script>
 </body>
 </html>

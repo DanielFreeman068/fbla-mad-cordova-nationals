@@ -7,8 +7,9 @@
   <title>Avatar Creator</title>
 </head>
 <body>
-  <!-- Fixed Header -->
+  <!-- Fixed Header with Back Button -->
   <div class="avatar-header">
+    <a href="profile.html" class="back-btn">&larr; Back</a>
     <h1>Avatar Creator</h1>
   </div>
 
@@ -25,14 +26,13 @@
         <img id="skin-layer" src="" alt="Skin" class="layer" />
         <!-- Layer 4: Accessory -->
         <img id="accessory-layer" src="" alt="Accessory" class="layer" />
-        <!-- NEW: Layer 5: Face (always present) -->
+        <!-- Layer 5: Face (always present) -->
         <img id="face-layer" src="images/clothes/face_anim.gif" alt="Face" class="layer" />
         <!-- Layer 6: Eyewear -->
         <img id="eyewear-layer" src="" alt="Eyewear" class="layer" />
         <!-- Layer 7: Hat (optional) -->
         <img id="hat-layer" src="" alt="Hat" class="layer" />
       </div>
-      
     </div>
 
     <!-- Items Selector -->
@@ -45,10 +45,22 @@
         <button class="tab-button" data-category="eyewear">Eyewear</button>
         <button class="tab-button" data-category="hats">Hats</button>
       </div>
-      <!-- Clear Selection Button -->
-      <button id="clear-selection" class="clear-btn">Clear Selection</button>
+      <!-- Action Buttons: Clear and Save Avatar -->
+      <div class="action-buttons">
+        <button id="clear-selection" class="clear-btn">Clear Selection</button>
+        <button id="save-avatar-btn" class="save-avatar-btn">Save Avatar</button>
+      </div>
       <!-- Grid where item cards will be injected -->
       <div class="items-grid"></div>
+    </div>
+  </div>
+
+  <!-- Save Avatar Modal -->
+  <div id="save-avatar-modal" class="modal">
+    <div class="modal-content">
+      <h2>Save Your Avatar?</h2>
+      <button id="confirm-save-avatar">Save</button>
+      <button id="cancel-save-avatar">Cancel</button>
     </div>
   </div>
 
@@ -102,18 +114,16 @@
   <!-- Ionicons -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
   <!-- Avatar Creator Logic -->
-  <script src="./js/avatar.js"></script>
-
+  <script type="module" src="./js/avatar.js"></script>
   <!-- Navigation Active Highlight Script -->
   <script>
     const list = document.querySelectorAll(".list");
     function activeLink() {
-      list.forEach((item) => item.classList.remove("active"));
+      list.forEach(item => item.classList.remove("active"));
       this.classList.add("active");
     }
-    list.forEach((item) => item.addEventListener("click", activeLink));
+    list.forEach(item => item.addEventListener("click", activeLink));
   </script>
 </body>
 </html>
