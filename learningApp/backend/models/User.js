@@ -55,8 +55,8 @@ const userSchema = new mongoose.Schema({
       score: { type: Number, required: true }
     }
   ],
-  resetToken: { type: String },
-  resetTokenExpire: { type: Date },
+  verificationCode: { type: String },
+  verificationCodeExpire: { type: Date },
   // New field to store purchased clothing items
   ownedItems: {
     type: [String],
