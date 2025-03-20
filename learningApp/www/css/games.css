@@ -279,10 +279,10 @@ body {
     background: linear-gradient(45deg, #4a90e2, #7b68ee);
     color: white;
     text-decoration: none;
-    padding: 12px 0;
-    width: 200px;
+    padding: 12px 15px;
     border-radius: 25px;
     font-size: 1.1rem;
+    white-space: nowrap;
 }
 
 .nav-link {
@@ -325,8 +325,6 @@ body {
         font-size: 1.3rem;
     }
     .play-link {
-        padding: 10px 0;
-        width: 150px;
         border-radius: 25px;
         font-size: 1rem;
     }
