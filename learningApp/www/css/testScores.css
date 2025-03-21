@@ -57,7 +57,8 @@ body {
 
 /* leaderboard styling */
 .leaderboard-level-container {
-    margin-top: 50px;
+    position: absolute;
+    top:25%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,7 +74,7 @@ body {
     text-decoration: none;
     color: white;
     background: linear-gradient(45deg, #4a90e2, #7b68ee);
-    width: 150px;
+    width: 130px;
     height: 75px;
     border-radius: 18px;
     font-size: 20px;
@@ -93,6 +94,11 @@ body {
 
 .leaderboard-button.selected {
     border: 3px solid black;
+}
+
+.leaderboard-table-container {
+    height: 570px;
+    margin-top: 410px;
 }
 
 .leaderboard-table {
@@ -139,4 +145,16 @@ body {
     font-weight: 500;
     font-family: monospace;
     width: 80px;
+}
+
+.results {
+    font-size: 18px;
+}
+
+#no-results {
+    position: absolute;
+    bottom: 25%;
+    max-width: 80%;
+    text-align: center;
+    color: white;
 }

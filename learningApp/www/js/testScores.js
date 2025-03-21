@@ -37,22 +37,35 @@ async function fetchTestScores(subject) {
 // 5) Actually render the table, using the "data" from server
 function renderLeaderboard(data) {
   const tableBody = document.getElementById("leaderboard-body");
+  const results = document.getElementById("no-results");
+
+  // Clear the existing table rows and results message
   tableBody.innerHTML = "";
+  results.innerHTML = "";
 
-  // Sort by date descending
-  data.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-  // Show top 10
-  data.slice(0, 10).forEach(item => {
-    const row = document.createElement("tr");
-    // Convert date to a nice format
-    const dateString = new Date(item.date).toLocaleDateString();
+  if (data.length === 0) {
+    // If no data, display a message
+    const row = document.createElement("div");
     row.innerHTML = `
-      <td>${dateString}</td>
-      <td>${item.score} / 25</td>
+      <h1 class="results">No test scores recorded for this subject yet.</h1>
     `;
-    tableBody.appendChild(row);
-  });
+    results.appendChild(row);
+  } else {
+    // Sort by date descending
+    data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // Show top 10
+    data.slice(0, 10).forEach(item => {
+      const row = document.createElement("tr");
+      // Convert date to a nice format
+      const dateString = new Date(item.date).toLocaleDateString();
+      row.innerHTML = `
+        <td>${dateString}</td>
+        <td>${item.score} / 25</td>
+      `;
+      tableBody.appendChild(row);
+    });
+  }
 }
 
 // Keep your existing "updateButtonSelection" if you want

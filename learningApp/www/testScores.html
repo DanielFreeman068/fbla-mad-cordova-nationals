@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">        
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">        
         <link rel="stylesheet" href="./css/testScores.css">
         <title>JOLT || Scores</title>
     </head>
@@ -25,7 +25,7 @@
             </div>
         </div>
     
-        <div>
+        <div class="leaderboard-table-container">
             <table class="leaderboard-table" id="leaderboard-table">
                 <thead>
                     <tr>
@@ -37,7 +37,9 @@
                 </tbody>
             </table>
         </div>
-        <script  type="module" src="./js/testScores.js"></script>
+        <div id="no-results"></div>
+        
+        <script type="module" src="./js/testScores.js"></script>
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </body>
