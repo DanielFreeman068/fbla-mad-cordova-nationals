@@ -1,4 +1,4 @@
-import config from './config.js';
+import config from './config.js'
 
 /*************************************************************
  *  InventoryManager - ONLY tracks ownedItems now
@@ -233,7 +233,7 @@ class ShopManager {
       folderPath += "Skins/";
     }
 
-    // Image
+    // Set image source using a relative path (remove window.location.origin)
     const imgEl = document.createElement("img");
     imgEl.src = folderPath + item.img;
     imgEl.classList.add("item-image");
