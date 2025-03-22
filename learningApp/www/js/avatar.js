@@ -61,7 +61,7 @@ class InventoryManager {
  *************************************************************/
 class AvatarManager {
   constructor(userData) {
-    // Define clothing data within the class (ensure IDs are in lowercase)
+    // Define clothing data within the class – using file names that match your shop assets!
     const colors = [
       { id: "blue", name: "Blue", img: "blue.png" },
       { id: "brown", name: "Brown", img: "brown.png" },
@@ -76,57 +76,57 @@ class AvatarManager {
     ];
 
     const skins = [
-      { id: "avocado", name: "Avocado", img: "avocado.png" },
-      { id: "clown", name: "Clown", img: "clown.png" },
-      { id: "ghost", name: "Ghost", img: "ghost.png" },
-      { id: "icecream", name: "Ice Cream", img: "icecream.png" },
-      { id: "lavalamp", name: "Lava Lamp", img: "lavalamp.png" },
-      { id: "overalls", name: "Overalls", img: "overalls.png" },
-      { id: "panda", name: "Panda", img: "panda.png" },
-      { id: "potato", name: "Potato", img: "potato.png" },
-      { id: "slime", name: "Slime", img: "slime.png" }
+      { id: "Avocado", name: "Avocado", img: "Avocado.PNG" },
+      { id: "Clown", name: "Clown", img: "Clown.PNG" },
+      { id: "Ghost", name: "Ghost", img: "Ghost.PNG" },
+      { id: "IceCream", name: "Ice Cream", img: "IceCream.PNG" },
+      { id: "LavaLamp", name: "Lava Lamp", img: "LavaLamp.PNG" },
+      { id: "Overalls", name: "Overalls", img: "Overalls.PNG" },
+      { id: "Panda", name: "Panda", img: "Panda.PNG" },
+      { id: "Potato", name: "Potato", img: "Potato.PNG" },
+      { id: "Slime", name: "Slime", img: "Slime.PNG" }
     ];
 
     const accessories = [
-      { id: "boomerang", name: "Boomerang", img: "boomerang.png" },
-      { id: "camera", name: "Camera", img: "camera.png" },
-      { id: "fishing_rod", name: "Fishing Rod", img: "fishing_rod.png" },
-      { id: "lantern", name: "Lantern", img: "lantern.png" },
-      { id: "lollipop", name: "Lollipop", img: "lollipop.png" },
-      { id: "magic_wand", name: "Magic Wand", img: "magic_wand.png" },
-      { id: "pumpkin_bucket", name: "Pumpkin Bucket", img: "pumpkin_bucket.png" },
-      { id: "rake", name: "Rake", img: "rake.png" },
-      { id: "shopping_bag", name: "Shopping Bag", img: "shopping_bag.png" },
-      { id: "skateboard", name: "Skateboard", img: "skateboard.png" },
-      { id: "snowglobe", name: "Snowglobe", img: "snowglobe.png" },
-      { id: "spellbook", name: "Spellbook", img: "spellbook.png" },
-      { id: "suitcase", name: "Suitcase", img: "suitcase.png" },
-      { id: "sword", name: "Sword", img: "sword.png" },
-      { id: "teddybear", name: "Teddy Bear", img: "teddybear.png" }
+      { id: "boomerang", name: "Boomerang", img: "boomerang.PNG" },
+      { id: "camera", name: "Camera", img: "camera.PNG" },
+      { id: "fishing_rod", name: "Fishing Rod", img: "fishing_rod.PNG" },
+      { id: "lantern", name: "Lantern", img: "lantern.PNG" },
+      { id: "lollipop", name: "Lollipop", img: "lollipop.PNG" },
+      { id: "magic_wand", name: "Magic Wand", img: "magic_wand.PNG" },
+      { id: "pumpkin_bucket", name: "Pumpkin Bucket", img: "pumpkin_bucket.PNG" },
+      { id: "rake", name: "Rake", img: "Rake.PNG" },
+      { id: "shopping_bag", name: "Shopping Bag", img: "shopping_bag.PNG" },
+      { id: "skateboard", name: "Skateboard", img: "skateboard.PNG" },
+      { id: "snowglobe", name: "Snowglobe", img: "snowglobe.PNG" },
+      { id: "spellbook", name: "Spellbook", img: "spellbook.PNG" },
+      { id: "suitcase", name: "Suitcase", img: "suitcase.PNG" },
+      { id: "sword", name: "Sword", img: "sword.PNG" },
+      { id: "teddybear", name: "Teddy Bear", img: "teddybear.PNG" }
     ];
 
     const eyewear = [
-      { id: "round_glasses", name: "Round Glasses", img: "round_glasses.png" },
-      { id: "scuba_goggles", name: "Scuba Goggles", img: "scuba_goggles.png" },
-      { id: "monocle", name: "Monocle", img: "monocle.png" },
-      { id: "cyberpunk", name: "Cyberpunk", img: "cyberpunk.png" },
-      { id: "sunglasses", name: "Sunglasses", img: "sunglasses.png" },
-      { id: "superhero_mask", name: "Superhero Mask", img: "superhero_mask.png" }
+      { id: "round_glasses", name: "Round Glasses", img: "round_glasses.PNG" },
+      { id: "scuba_goggles", name: "Scuba Goggles", img: "scuba_goggles.PNG" },
+      { id: "monocle", name: "Monocle", img: "monocle.PNG" },
+      { id: "cyberpunk", name: "Cyberpunk", img: "cyberpunk.PNG" },
+      { id: "sunglasses", name: "Sunglasses", img: "sunglasses.PNG" },
+      { id: "superhero_mask", name: "Superhero Mask", img: "superhero_mask.PNG" }
     ];
 
     const hats = [
-      { id: "beanie", name: "Beanie", img: "beanie.png" },
-      { id: "cap", name: "Cap", img: "cap.png" },
-      { id: "cowboy_hat", name: "Cowboy Hat", img: "cowboy_hat.png" },
-      { id: "graduation_cap", name: "Graduation Cap", img: "graduation_cap.png" },
-      { id: "heart_clip", name: "Heart Clip", img: "heart_clip.png" },
-      { id: "magic_hat", name: "Magic Hat", img: "magic_hat.png" },
-      { id: "military_helmet", name: "Military Helmet", img: "military_helmet.png" },
-      { id: "pirate_hat", name: "Pirate Hat", img: "pirate_hat.png" },
-      { id: "plant_sprout", name: "Plant Sprout", img: "plant_sprout.png" },
-      { id: "spartan_mask", name: "Spartan Mask", img: "spartan_mask.png" },
-      { id: "sunhat", name: "Sunhat", img: "sunhat.png" },
-      { id: "tophat", name: "Tophat", img: "tophat.png" }
+      { id: "beanie", name: "Beanie", img: "beanie.PNG" },
+      { id: "cap", name: "Cap", img: "cap.PNG" },
+      { id: "cowboy_hat", name: "Cowboy Hat", img: "cowboy_hat.PNG" },
+      { id: "graduation_cap", name: "Graduation Cap", img: "graduation_cap.PNG" },
+      { id: "heart_clip", name: "Heart Clip", img: "heart_clip.PNG" },
+      { id: "magic_hat", name: "Magic Hat", img: "magic_hat.PNG" },
+      { id: "military_helmet", name: "Military Helmet", img: "military_helmet.PNG" },
+      { id: "pirate_hat", name: "Pirate Hat", img: "pirate_hat.PNG" },
+      { id: "plant_sprout", name: "Plant Sprout", img: "plant_sprout.PNG" },
+      { id: "spartan_mask", name: "Spartan Mask", img: "spartan_mask.PNG" },
+      { id: "sunhat", name: "Sunhat", img: "sunhat.PNG" },
+      { id: "tophat", name: "Tophat", img: "tophat.PNG" }
     ];
 
     // Save complete set of items as a property
