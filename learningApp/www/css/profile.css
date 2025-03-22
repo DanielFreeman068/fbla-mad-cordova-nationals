@@ -117,7 +117,7 @@ body {
 }
 
 .navigation ul li.active a .icon {
-    transform: translateY(-32px);
+    transform: translateY(-35px);
 }
 
 .navigation ul li a .text {
@@ -481,6 +481,7 @@ body {
   
   /* Style for the Edit Avatar button */
   .edit-avatar-btn {
+    margin-bottom: 15px;
     background-color: #fff;
     color: #2b6cb0;
     border: none;
