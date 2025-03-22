@@ -20,7 +20,7 @@
     top:0%;
     font-family: bubble;
     font-size:80px;
-    margin-top:5rem;
+    margin-top:2rem;
     color: white;
 }
 
@@ -101,7 +101,7 @@ body {
 }
 
 .navigation ul li.active a .icon {
-    transform: translateY(-32px);
+    transform: translateY(-35px);
 }
 
 .navigation ul li a .text {
