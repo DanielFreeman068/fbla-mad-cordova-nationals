@@ -63,16 +63,16 @@ class AvatarManager {
   constructor(userData) {
     // Define clothing data within the class – using file names that match your shop assets!
     const colors = [
-      { id: "blue", name: "Blue", img: "blue.png" },
-      { id: "brown", name: "Brown", img: "brown.png" },
-      { id: "gray", name: "Gray", img: "gray.png" },
-      { id: "green", name: "Green", img: "green.png" },
-      { id: "orange", name: "Orange", img: "orange.png" },
-      { id: "peach", name: "Peach", img: "peach.png" },
-      { id: "purple", name: "Purple", img: "purple.png" },
-      { id: "red", name: "Red", img: "red.png" },
-      { id: "white", name: "White", img: "white.png" },
-      { id: "yellow", name: "Yellow", img: "yellow.png" }
+      { id: "blue", name: "Blue", img: "blue.PNG" },
+      { id: "brown", name: "Brown", img: "brown.PNG" },
+      { id: "gray", name: "Gray", img: "gray.PNG" },
+      { id: "green", name: "Green", img: "green.PNG" },
+      { id: "orange", name: "Orange", img: "orange.PNG" },
+      { id: "peach", name: "Peach", img: "peach.PNG" },
+      { id: "purple", name: "Purple", img: "purple.PNG" },
+      { id: "red", name: "Red", img: "red.PNG" },
+      { id: "white", name: "White", img: "white.PNG" },
+      { id: "yellow", name: "Yellow", img: "yellow.PNG" }
     ];
 
     const skins = [
@@ -218,7 +218,7 @@ class AvatarManager {
         "hat-pirate_hat", "hat-plant_sprout", "hat-spartan_mask",
         "hat-sunhat", "hat-tophat"
       );
-      switch (this.avatarState.hat.replace(".png", "").toLowerCase()) {
+      switch (this.avatarState.hat.replace(/\.png$/i, "").toLowerCase()) {
         case "beanie":
           this.hatLayerEl.classList.add("hat-beanie");
           break;
@@ -356,7 +356,19 @@ class AvatarManager {
       alert("Error saving avatar");
     }
   }
-}
+
+  resetAvatar() {
+    // Reset avatar state to defaults: no color, skin, accessory, eyewear, or hat.
+    this.avatarState = { color: "", skin: "", accessory: "", eyewear: "", hat: "" };
+    // Update the preview so that only the base and face layers remain visible.
+    this.updateAvatarPreview();
+  }
+  
+};
+
+
+
+
 
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("authToken");
@@ -376,4 +388,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const avatarManager = new AvatarManager(currentUser);
   // Initialize the Save Avatar modal functionality
   avatarManager.initSaveAvatarModal();
+
+  // Add clear selection button functionality
+  const clearBtn = document.getElementById("clear-selection");
+  clearBtn.addEventListener("click", () => {
+    avatarManager.resetAvatar();
+  });
 });
+

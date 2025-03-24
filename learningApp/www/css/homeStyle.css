@@ -447,6 +447,7 @@ svg{
         font-weight: bold;
         color: #e67e22;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        padding-bottom: 1.5px;
     }
 
     .icon-score {
