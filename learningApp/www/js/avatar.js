@@ -59,7 +59,7 @@ class InventoryManager {
  *  - Populates the avatar selector with only items the user owns
  *  - Handles custom CSS class assignment for eyewear and hats
  *************************************************************/
-class AvatarManager {
+export class AvatarManager {
   constructor(userData) {
     // Define clothing data within the class – using file names that match your shop assets!
     const colors = [

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="./css/testhomeStyle.css">
+  <title>JOLT || Home</title>
+</head>
+<body>
+  <!-- Jolt Logo (moved lower) -->
+  <h1 class="headerText">JOLT</h1>
+  
+  <!-- Coins Container (Top Left) using old side-info-1 styling -->
+  <div id="coins-container">
+    <div class="coin">
+      <div class="coin-inner">
+        <span class="coin-symbol">$</span>
+      </div>
+    </div>
+    <h1 class="coins-text">521</h1>
+  </div>
+  
+  <!-- Top Right Profile Container with XP Circle (no level text) -->
+  <div class="top-right-profile">
+    <div class="small-profile">
+      <div class="xp-wrapper">
+        <svg class="xp-svg" width="80" height="80">
+          <circle id="xp-circle" cx="40" cy="40" r="30" stroke-linecap="round"></circle>
+          <!-- Define your gradient for #GradientColorSmall in a <defs> if needed -->
+        </svg>
+        <img src="https://static.vecteezy.com/system/resources/previews/002/534/006/original/social-media-chatting-online-blank-profile-picture-head-and-body-icon-people-standing-icon-grey-background-free-vector.jpg" alt="Profile Picture" class="small-profile-pic">
+      </div>
+    </div>
+  </div>
+  
+  <!-- Avatar Container (for avatar preview; hidden by default) -->
+  <div class="avatar-container" style="display: none;">
+    <img id="color-layer" alt="Color Layer">
+    <img id="skin-layer" alt="Skin Layer">
+    <img id="accessory-layer" alt="Accessory Layer">
+    <img id="eyewear-layer" alt="Eyewear Layer">
+    <img id="hat-layer" alt="Hat Layer">
+  </div>
+  
+  <!-- Avatar Selector UI (for avatar customization; made visible for testing) -->
+  <div class="avatar-selector" style="display: block;">
+    <div class="avatar-tabs">
+      <button class="tab-button active" data-category="colors">Colors</button>
+      <button class="tab-button" data-category="skins">Skins</button>
+      <button class="tab-button" data-category="accessories">Accessories</button>
+      <button class="tab-button" data-category="eyewear">Eyewear</button>
+      <button class="tab-button" data-category="hats">Hats</button>
+    </div>
+    <div class="items-grid"></div>
+    <button id="save-avatar-btn">Save Avatar</button>
+    <div class="modal" id="save-avatar-modal" style="display: none;">
+      <div class="modal-content">
+        <h2>Save Avatar?</h2>
+        <button id="cancel-save-avatar">Cancel</button>
+        <button id="confirm-save-avatar">Confirm</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Play Button -->
+  <button class="play-btn">Play!</button>
+  
+  <!-- Navigation -->
+  <div class="navigation">
+    <ul>
+      <li class="list">
+        <a href="shop.html">
+          <span class="icon">
+            <ion-icon name="storefront-outline"></ion-icon>
+          </span>
+          <span class="text">Shop</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="test.html">
+          <span class="icon">
+            <ion-icon name="school-outline"></ion-icon>
+          </span>
+          <span class="text">Test</span>
+        </a>
+      </li>
+      <li class="list active">
+        <a id="home" href="homepage.html">
+          <span class="icon">
+            <ion-icon name="home-outline"></ion-icon>
+          </span>
+          <span class="text">Home</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="games.html">
+          <span class="icon">
+            <ion-icon name="game-controller-outline"></ion-icon>
+          </span>
+          <span class="text">Games</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="profile.html">
+          <span class="icon">
+            <ion-icon name="person-circle-outline"></ion-icon>
+          </span>
+          <span class="text">Profile</span>
+        </a>
+      </li>
+      <div id="border-gradient-rounded" class="indicator"></div>
+    </ul>
+  </div>
+  
+  <!-- Navigation Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h2>Select an Option</h2>
+      <a href="test.html" class="modal-option">Test</a>
+      <a href="games.html" class="modal-option">Puzzles</a>
+    </div>
+  </div>
+  
+  <script type="module" src="./js/testhome.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
