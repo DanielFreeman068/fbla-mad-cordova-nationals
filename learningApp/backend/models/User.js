@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
   },
   coins: {
     type: Number,
-    default: 2500  // Set default coins for testing
+    default: 0 
   },
   timerChallengeTime: {
     type: Number,
