@@ -256,7 +256,11 @@ class ShopManager {
     detailsEl.innerHTML = `
       <h4 class="item-name">${item.name}</h4>
       <div class="item-price">
-        <ion-icon name="logo-bitcoin"></ion-icon>
+        <div class="coin-shop-icon">
+            <div class="coin-inner-shop-icon">
+                <span class="coin-symbol-shop-icon">$</span>
+            </div>
+        </div>
         <span>${item.price.toLocaleString()}</span>
       </div>
       <button class="buy-btn" data-item="${item.id}" ${isAlreadyOwned ? 'disabled' : ''}>
