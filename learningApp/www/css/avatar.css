@@ -341,7 +341,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* more columns since images are small */
     gap: 5px;
-    padding: 0 5px;
+    padding: 20px 5px;
   }
   
   /* Each Item Card */
@@ -353,6 +353,8 @@
     padding: 3px;
     cursor: pointer;
     transition: transform 0.2s ease;
+    position: relative;
+
   }
   
   .item-card img {
@@ -583,4 +585,20 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.selected-checkmark {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #2b6cb0;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }

@@ -179,46 +179,56 @@ export class AvatarManager {
   }
 
   updateAvatarPreview() {
-    this.colorLayerEl.style.display = this.avatarState.color ? "block" : "none";
+    // COLOR
     if (this.avatarState.color) {
-      this.colorLayerEl.src = "images/clothes/Colors/" + this.avatarState.color;
+      this.colorLayerEl.src = "./images/clothes/Colors/" + this.avatarState.color;
+    } else {
+      this.colorLayerEl.src = "./images/clothes/Colors/transparent_image.png";
     }
-    this.skinLayerEl.style.display = this.avatarState.skin ? "block" : "none";
+  
+    // SKIN
     if (this.avatarState.skin) {
-      this.skinLayerEl.src = "images/clothes/Skins/" + this.avatarState.skin;
+      this.skinLayerEl.src = "./images/clothes/Skins/" + this.avatarState.skin;
+    } else {
+      this.skinLayerEl.src = "./images/clothes/Skins/transparent_image.png";
     }
-    this.accessoryLayerEl.style.display = this.avatarState.accessory ? "block" : "none";
+  
+    // ACCESSORY
     if (this.avatarState.accessory) {
-      this.accessoryLayerEl.src = "images/clothes/Accessories/" + this.avatarState.accessory;
+      this.accessoryLayerEl.src = "./images/clothes/Accessories/" + this.avatarState.accessory;
+    } else {
+      this.accessoryLayerEl.src = "./images/clothes/Accessories/transparent_image.png";
     }
-    // For eyewear, update image and CSS classes
-    this.eyewearLayerEl.style.display = this.avatarState.eyewear ? "block" : "none";
+  
+    // EYEWEAR
+    this.eyewearLayerEl.classList.remove("eyewear-cyberpunk", "eyewear-round", "eyewear-scuba", "eyewear-monocle");
     if (this.avatarState.eyewear) {
-      this.eyewearLayerEl.src = "images/clothes/Eyewear/" + this.avatarState.eyewear;
-      this.eyewearLayerEl.classList.remove("eyewear-cyberpunk", "eyewear-round", "eyewear-scuba", "eyewear-monocle");
-      if (this.avatarState.eyewear.toLowerCase() === "cyberpunk.png" ||
-          this.avatarState.eyewear.toLowerCase() === "superhero_mask.png") {
+      const eyewearFile = this.avatarState.eyewear.toLowerCase();
+      this.eyewearLayerEl.src = "./images/clothes/Eyewear/" + this.avatarState.eyewear;
+      if (eyewearFile === "cyberpunk.png" || eyewearFile === "superhero_mask.png") {
         this.eyewearLayerEl.classList.add("eyewear-cyberpunk");
-      } else if (this.avatarState.eyewear.toLowerCase() === "round_glasses.png" ||
-                 this.avatarState.eyewear.toLowerCase() === "sunglasses.png") {
+      } else if (eyewearFile === "round_glasses.png" || eyewearFile === "sunglasses.png") {
         this.eyewearLayerEl.classList.add("eyewear-round");
-      } else if (this.avatarState.eyewear.toLowerCase() === "scuba_goggles.png") {
+      } else if (eyewearFile === "scuba_goggles.png") {
         this.eyewearLayerEl.classList.add("eyewear-scuba");
-      } else if (this.avatarState.eyewear.toLowerCase() === "monocle.png") {
+      } else if (eyewearFile === "monocle.png") {
         this.eyewearLayerEl.classList.add("eyewear-monocle");
       }
+    } else {
+      this.eyewearLayerEl.src = "./images/clothes/Eyewear/transparent_image.png";
     }
-    // For hats, update image and custom classes
-    this.hatLayerEl.style.display = this.avatarState.hat ? "block" : "none";
+  
+    // HAT
+    this.hatLayerEl.classList.remove(
+      "hat-beanie", "hat-cap", "hat-cowboy_hat", "hat-graduation_cap",
+      "hat-heart_clip", "hat-magic_hat", "hat-military_helmet",
+      "hat-pirate_hat", "hat-plant_sprout", "hat-spartan_mask",
+      "hat-sunhat", "hat-tophat"
+    );
     if (this.avatarState.hat) {
-      this.hatLayerEl.src = "images/clothes/Hats/" + this.avatarState.hat;
-      this.hatLayerEl.classList.remove(
-        "hat-beanie", "hat-cap", "hat-cowboy_hat", "hat-graduation_cap",
-        "hat-heart_clip", "hat-magic_hat", "hat-military_helmet",
-        "hat-pirate_hat", "hat-plant_sprout", "hat-spartan_mask",
-        "hat-sunhat", "hat-tophat"
-      );
-      switch (this.avatarState.hat.replace(/\.png$/i, "").toLowerCase()) {
+      const hatFile = this.avatarState.hat.replace(/\.png$/i, "").toLowerCase();
+      this.hatLayerEl.src = "./images/clothes/Hats/" + this.avatarState.hat;
+      switch (hatFile) {
         case "beanie":
           this.hatLayerEl.classList.add("hat-beanie");
           break;
@@ -256,8 +266,11 @@ export class AvatarManager {
           this.hatLayerEl.classList.add("hat-tophat");
           break;
       }
+    } else {
+      this.hatLayerEl.src = "./images/clothes/Hats/transparent_image.png";
     }
   }
+  
 
   initTabs() {
     const tabButtons = document.querySelectorAll(".tab-button");
@@ -304,9 +317,25 @@ export class AvatarManager {
       card.appendChild(label);
 
       card.addEventListener("click", () => {
-        this.avatarState[this.categoryToKey[category]] = item.img;
+        const key = this.categoryToKey[category];
+        // Toggle the selection: unselect if already selected.
+        if (this.avatarState[key] === item.img) {
+          this.avatarState[key] = "";
+        } else {
+          this.avatarState[key] = item.img;
+        }
         this.updateAvatarPreview();
+        // Refresh the grid to update checkmarks
+        this.populateItems(category);
       });
+      
+      if (this.avatarState[this.categoryToKey[category]] === item.img) {
+        const checkmark = document.createElement("div");
+        checkmark.className = "selected-checkmark";
+        checkmark.textContent = "✓";  // You can also use an icon if preferred
+        card.appendChild(checkmark);
+      }
+      
 
       grid.appendChild(card);
     });
