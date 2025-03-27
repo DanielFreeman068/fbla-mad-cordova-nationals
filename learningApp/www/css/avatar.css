@@ -99,7 +99,7 @@
     left: 0px;    /* flush to the left */
     object-fit: contain;
     /* Fine-tune the position: move 2px further left and 3px upward */
-    transform: translate(-25px, -12px);
+    transform: translate(-18px, -12px);
     /* Ensure the image aligns to the left and bottom of its box */
     object-position: left bottom;
   }

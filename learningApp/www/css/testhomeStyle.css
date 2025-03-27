@@ -17,7 +17,7 @@
 /* Header (JOLT Logo) - moved lower */
 .headerText {
     position: absolute;
-    top: 60px;
+    top: 130px;
     left: 50%;
     transform: translateX(-50%);
     font-family: bubble;
@@ -43,18 +43,19 @@ body {
 /* --------------------------
    Top Left Coins Container using old side-info-1 style
    -------------------------- */
-#coins-container {
+   #coins-container {
     position: absolute;
-    top: 60px;
-    left: 20px;
+    top: 73px;
+    left: 0px; /* Reduced margin to be more flush left */
     display: flex;
     align-items: center;
     background: linear-gradient(45deg, #4a90e2, #7b68ee);
-    width: 130px;
+    min-width: 130px;  /* Minimum width to accommodate content */
     height: 50px;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
-    padding-left: 10px;
+    padding: 0 10px;
+    white-space: nowrap; /* Prevent wrapping of text */
     z-index: 100;
 }
 
@@ -63,6 +64,7 @@ body {
     color: white;
     margin-left: 10px;
 }
+
 
 /* Coin Styling (as before) */
 .coin {
@@ -257,7 +259,7 @@ svg {
     cursor: pointer;
     color: #ffffff;
     position: absolute;
-    bottom: 15%;
+    bottom: 20%;
 }
 
 /* ------------------------------

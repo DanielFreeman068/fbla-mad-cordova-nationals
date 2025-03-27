@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" 
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- Load the main style sheet and the avatar CSS for positioning -->
   <link rel="stylesheet" href="./css/testhomeStyle.css">
+  <link rel="stylesheet" href="./css/avatar.css">
   <title>JOLT || Home</title>
 </head>
 <body>
   <!-- Jolt Logo (moved lower) -->
   <h1 class="headerText">JOLT</h1>
   
-  <!-- Coins Container (Top Left) using old side-info-1 styling -->
+  <!-- Coins Container (Top Left) -->
   <div id="coins-container">
     <div class="coin">
       <div class="coin-inner">
@@ -20,7 +23,7 @@
     <h1 class="coins-text">521</h1>
   </div>
   
-  <!-- Top Right Profile Container with XP Circle (no level text) -->
+  <!-- Top Right Profile Container with XP Circle -->
   <div class="top-right-profile">
     <div class="small-profile">
       <div class="xp-wrapper">
@@ -28,44 +31,37 @@
           <circle id="xp-circle" cx="40" cy="40" r="30" stroke-linecap="round"></circle>
           <!-- Define your gradient for #GradientColorSmall in a <defs> if needed -->
         </svg>
-        <img src="https://static.vecteezy.com/system/resources/previews/002/534/006/original/social-media-chatting-online-blank-profile-picture-head-and-body-icon-people-standing-icon-grey-background-free-vector.jpg" alt="Profile Picture" class="small-profile-pic">
+        <img src="https://static.vecteezy.com/system/resources/previews/002/534/006/original/social-media-chatting-online-blank-profile-picture-head-and-body-icon-people-standing-icon-grey-background-free-vector.jpg" 
+             alt="Profile Picture" 
+             class="small-profile-pic">
       </div>
     </div>
   </div>
   
-  <!-- Avatar Container (for avatar preview; hidden by default) -->
-  <div class="avatar-container" style="display: none;">
-    <img id="color-layer" alt="Color Layer">
-    <img id="skin-layer" alt="Skin Layer">
-    <img id="accessory-layer" alt="Accessory Layer">
-    <img id="eyewear-layer" alt="Eyewear Layer">
-    <img id="hat-layer" alt="Hat Layer">
-  </div>
-  
-  <!-- Avatar Selector UI (for avatar customization; made visible for testing) -->
-  <div class="avatar-selector" style="display: block;">
-    <div class="avatar-tabs">
-      <button class="tab-button active" data-category="colors">Colors</button>
-      <button class="tab-button" data-category="skins">Skins</button>
-      <button class="tab-button" data-category="accessories">Accessories</button>
-      <button class="tab-button" data-category="eyewear">Eyewear</button>
-      <button class="tab-button" data-category="hats">Hats</button>
-    </div>
-    <div class="items-grid"></div>
-    <button id="save-avatar-btn">Save Avatar</button>
-    <div class="modal" id="save-avatar-modal" style="display: none;">
-      <div class="modal-content">
-        <h2>Save Avatar?</h2>
-        <button id="cancel-save-avatar">Cancel</button>
-        <button id="confirm-save-avatar">Confirm</button>
-      </div>
+  <!-- Composite Avatar Preview Area -->
+  <div class="avatar-preview-wrapper">
+    <div class="avatar-preview">
+      <!-- Layer 1: Base (always present) -->
+      <img id="base-layer" src="./images/clothes/Colors/Clear.PNG" alt="Base Layer" class="layer">
+      <!-- Layer 2: Color -->
+      <img id="color-layer" alt="Color Layer" class="layer">
+      <!-- Layer 3: Skin -->
+      <img id="skin-layer" alt="Skin Layer" class="layer">
+      <!-- Layer 4: Accessory -->
+      <img id="accessory-layer" alt="Accessory Layer" class="layer">
+      <!-- Layer 5: Face (always present) -->
+      <img id="face-layer" src="./images/clothes/face_anim.GIF" alt="Face Layer" class="layer">
+      <!-- Layer 6: Eyewear -->
+      <img id="eyewear-layer" alt="Eyewear Layer" class="layer">
+      <!-- Layer 7: Hat -->
+      <img id="hat-layer" alt="Hat Layer" class="layer">
     </div>
   </div>
   
   <!-- Play Button -->
   <button class="play-btn">Play!</button>
   
-  <!-- Navigation -->
+  <!-- Navigation (navbar from original home page) -->
   <div class="navigation">
     <ul>
       <li class="list">
