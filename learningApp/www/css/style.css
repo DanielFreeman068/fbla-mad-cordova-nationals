@@ -194,10 +194,40 @@ input:last-of-type{
 
 .forgot-password {
     color:white;
-    margin-top: 5rem;
+    margin-top: 3rem;
     font-size: 16px;
 }
 
 .forgot-password:hover {
     color:rgb(194, 193, 193);
+}
+
+/* Container for the icons */
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.icon img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.icon img:hover {
+    transform: scale(1.2);
+}
+
+.social-container {
+    margin-top: 3rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+}
+
+.social-header {
+    font-size: 18px;
 }
