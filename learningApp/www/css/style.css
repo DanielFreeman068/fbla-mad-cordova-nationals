@@ -219,7 +219,10 @@ input:last-of-type{
 }
 
 .social-container {
-    margin-top: 3rem;
+    position: fixed;
+    bottom: 3%;
+    left: 50%;
+    transform: translateX(-50%);
     color: white;
     display: flex;
     justify-content: center;
@@ -229,5 +232,5 @@ input:last-of-type{
 }
 
 .social-header {
-    font-size: 18px;
+    font-size: 20px;
 }
