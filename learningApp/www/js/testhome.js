@@ -1,40 +1,72 @@
 import config from './config.js';
 import { AvatarManager } from './avatar.js';
+import { setHomeRedirect } from './homeRedirect.js';
+
+
+function setupSwitchHomeListener() {
+  const confirmSwitchBtn = document.getElementById("confirm-switch-home");
+  if (!confirmSwitchBtn) {
+    // Element doesn't exist on this page – do nothing.
+    return;
+  }
+  confirmSwitchBtn.addEventListener("click", async () => {
+    try {
+      const token = localStorage.getItem("authToken");
+      const userId = getUserIdFromToken();
+      const res = await fetch(`${config.IP}/users/${userId}/switchHomePage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        // Update localStorage for immediate use
+        localStorage.setItem("alternateHomePage", data.alternateHomePage.toString());
+        // Update the home link accordingly using our shared function
+        setHomeRedirect();
+        alert("Homepage switched successfully to " + (data.alternateHomePage ? "alternate" : "default") + " version.");
+      } else {
+        alert("Failed to switch homepage.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error switching homepage.");
+    }
+    const modal = document.getElementById("switch-home-modal");
+    if (modal) {
+      modal.style.display = "none";
+    }
+  });
+}
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1) Get userID from token
+  // Always initialize the modal event listener.
+  initModal();
+
+  // Then proceed with fetching user data.
   const userId = getUserIdFromToken();
   if (!userId) {
     window.location.href = "index.html";
     return;
   }
 
-  // 2) Fetch user data
   fetchUserData(userId)
     .then((user) => {
-      // 3) Update coins in the top left
       updateCoins(user);
-      
-      // 4) Update the top-right profile (small profile picture)
       updateTopRightProfile(user);
-      
-      // 5) Initialize the composite avatar preview using AvatarManager.
-      // AvatarManager.updateAvatarPreview() will layer the images for color, skin, accessory, eyewear, and hat.
-      // The base-layer and face-layer are static in the HTML.
+      updateXPBar(user);
       const avatarManager = new AvatarManager(user);
       avatarManager.updateAvatarPreview();
       window.avatarManager = avatarManager;
-      
-      // 6) Initialize modal functionality for navigation.
-      initModal();
-      
-      // 7) Update XP circle progress for the top-right profile.
       updateLevelUI(user.xp, user.level);
     })
     .catch((err) => {
       console.error(err);
     });
 });
+
 
 function getUserIdFromToken() {
   const token = localStorage.getItem("authToken");
@@ -70,6 +102,21 @@ function updateTopRightProfile(user) {
   const smallProfilePic = document.querySelector(".small-profile-pic");
   if (user.profilePicture && smallProfilePic) {
     smallProfilePic.src = user.profilePicture;
+  }
+}
+
+function updateXPBar(user) {
+  const xpBar = document.getElementById("xp-bar");
+  const levelRect = document.getElementById("level-rectangle");
+  const xp = user.xp || 0;
+  const level = user.level || 1;
+  const xpPerLevel = 100;
+  const xpPercentage = Math.min((xp / xpPerLevel) * 100, 100);
+  if (xpBar) {
+    xpBar.style.width = xpPercentage + "%";
+  }
+  if (levelRect) {
+    levelRect.textContent = `Level ${level}`;
   }
 }
 

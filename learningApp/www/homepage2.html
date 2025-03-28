@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" 
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <!-- Load the main style sheet and the avatar CSS for positioning -->
+  <!-- Load the main stylesheet and avatar CSS for positioning -->
   <link rel="stylesheet" href="./css/testhomeStyle.css">
   <link rel="stylesheet" href="./css/avatar.css">
   <title>JOLT || Home</title>
@@ -38,30 +38,41 @@
     </div>
   </div>
   
-  <!-- Composite Avatar Preview Area -->
-  <div class="avatar-preview-wrapper">
-    <div class="avatar-preview">
-      <!-- Layer 1: Base (always present) -->
-      <img id="base-layer" src="./images/clothes/Colors/Clear.PNG" alt="Base Layer" class="layer">
-      <!-- Layer 2: Color -->
-      <img id="color-layer" alt="Color Layer" class="layer">
-      <!-- Layer 3: Skin -->
-      <img id="skin-layer" alt="Skin Layer" class="layer">
-      <!-- Layer 4: Accessory -->
-      <img id="accessory-layer" alt="Accessory Layer" class="layer">
-      <!-- Layer 5: Face (always present) -->
-      <img id="face-layer" src="./images/clothes/face_anim.GIF" alt="Face Layer" class="layer">
-      <!-- Layer 6: Eyewear -->
-      <img id="eyewear-layer" alt="Eyewear Layer" class="layer">
-      <!-- Layer 7: Hat -->
-      <img id="hat-layer" alt="Hat Layer" class="layer">
+  <!-- New Main Content Wrapper: centers avatar, xp bar and play button -->
+  <div class="main-content">
+    <!-- Composite Avatar Preview Area -->
+    <div class="avatar-preview-wrapper">
+      <div class="avatar-preview">
+        <!-- Layer 1: Base (always present) -->
+        <img id="base-layer" src="./images/clothes/Colors/Clear.PNG" alt="Base Layer" class="layer">
+        <!-- Layer 2: Color -->
+        <img id="color-layer" alt="Color Layer" class="layer">
+        <!-- Layer 3: Skin -->
+        <img id="skin-layer" alt="Skin Layer" class="layer">
+        <!-- Layer 4: Accessory -->
+        <img id="accessory-layer" alt="Accessory Layer" class="layer">
+        <!-- Layer 5: Face (always present) -->
+        <img id="face-layer" src="./images/clothes/face_anim.GIF" alt="Face Layer" class="layer">
+        <!-- Layer 6: Eyewear -->
+        <img id="eyewear-layer" alt="Eyewear Layer" class="layer">
+        <!-- Layer 7: Hat -->
+        <img id="hat-layer" alt="Hat Layer" class="layer">
+      </div>
     </div>
+    
+    <!-- XP Bar Container (directly below avatar preview) -->
+    <div class="info-container">
+      <div class="xp-container">
+        <div class="xp-bar" id="xp-bar"></div>
+      </div>
+      <div id="level-rectangle">Level 1</div>
+    </div>
+    
+    <!-- Play Button (centered below the XP bar) -->
+    <button class="play-btn">Play!</button>
   </div>
   
-  <!-- Play Button -->
-  <button class="play-btn">Play!</button>
-  
-  <!-- Navigation (navbar from original home page) -->
+  <!-- Navigation (navbar from the original home page) -->
   <div class="navigation">
     <ul>
       <li class="list">
@@ -108,16 +119,27 @@
     </ul>
   </div>
   
-  <!-- Navigation Modal -->
   <div class="modal" id="modal">
     <div class="modal-content">
-      <h2>Select an Option</h2>
-      <a href="test.html" class="modal-option">Test</a>
-      <a href="games.html" class="modal-option">Puzzles</a>
+        <h2>Select an Option</h2>
+        <a href="test.html" class="modal-option">Test</a>
+        <a href="games.html" class="modal-option">Puzzles</a>
     </div>
-  </div>
+</div>
+
+
+
   
+  <script type="module" src="./js/homeRedirect.js"></script>
   <script type="module" src="./js/testhome.js"></script>
+
+  <script type="module">
+    import { setHomeRedirect } from './js/homeRedirect.js';
+    document.addEventListener("DOMContentLoaded", () => {
+      setHomeRedirect();
+    });
+  </script>
+  
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

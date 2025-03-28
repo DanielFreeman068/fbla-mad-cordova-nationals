@@ -107,8 +107,9 @@
 
 
 <!-- Change this later -->
+<script type="module" src="./js/homeRedirect.js"></script>
 
-    <script>
+<script type="module">
         const list = document.querySelectorAll('.list');
 
         function activeLink(){
@@ -120,7 +121,11 @@
         list.forEach((item) =>
             item.addEventListener('click', activeLink));
 
-            
+            import { setHomeRedirect } from './js/homeRedirect.js';
+  document.addEventListener("DOMContentLoaded", () => {
+    setHomeRedirect();
+  });
+
     </script>
     <script  type="module" src="./js/home.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

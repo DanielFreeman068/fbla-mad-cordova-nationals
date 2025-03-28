@@ -62,7 +62,8 @@ const userSchema = new mongoose.Schema({
     type: [String],
     default: []
   },
-  avatar: { type: Object, default: {} }
+  avatar: { type: Object, default: {} },
+  alternateHomePage: { type: Boolean, default: false }  // New field for homepage preference
 
 });
 

@@ -47,7 +47,7 @@
       </div>
       <!-- Action Buttons: Clear and Save Avatar -->
       <div class="action-buttons">
-        <button id="clear-selection" class="clear-btn">Clear Avatar</button>
+        <button id="clear-selection" class="clear-btn">Reset Avatar</button>
         <button id="save-avatar-btn" class="save-avatar-btn">Save Avatar</button>
       </div>
       <!-- Grid where item cards will be injected -->
@@ -65,18 +65,23 @@
   </div>
 
   <!-- Ionicons -->
+  <script type="module" src="./js/homeRedirect.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <!-- Avatar Creator Logic -->
   <script type="module" src="./js/avatar.js"></script>
   <!-- Navigation Active Highlight Script -->
-  <script>
+  <script type="module">
     const list = document.querySelectorAll(".list");
     function activeLink() {
       list.forEach(item => item.classList.remove("active"));
       this.classList.add("active");
     }
     list.forEach(item => item.addEventListener("click", activeLink));
+  // Call it on DOMContentLoaded so the home link is updated
+  document.addEventListener("DOMContentLoaded", () => {
+    setHomeRedirect();
+  });
   </script>
 </body>
 </html>

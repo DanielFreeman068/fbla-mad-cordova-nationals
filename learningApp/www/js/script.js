@@ -55,27 +55,27 @@ window.auth = async function () {
         body: JSON.stringify({ email, password }),
       });
 
-      // Log the response for debugging
       console.log('Response status:', response.status);
       console.log('Response headers:', [...response.headers]);
 
       const data = await response.json();
-
-      console.log('Response body:', data); // Log response
-
+      console.log('Response body:', data);
 
       if (response.ok) {
         console.log(data.message);
         localStorage.setItem('authToken', data.token);
-        window.location.assign("homepage.html");
+        // Check alternateHomePage flag and redirect accordingly:
+        if (data.user && data.user.alternateHomePage) {
+          window.location.assign("homepage2.html");
+        } else {
+          window.location.assign("homepage.html");
+        }
       } else {
         console.error("Login failed:", data);
         alert(data.message || "Login failed");
       }
     } catch (err) {
-      // Log the specific error for debugging
       console.error("Error during login:", err);
-
       if (err.name === 'TypeError' && err.message === 'Failed to fetch') {
         alert(
           "Network error: Check your server's CORS settings or ensure the backend is reachable."
@@ -85,6 +85,7 @@ window.auth = async function () {
       }
     }
   } else {
+    // Signup branch
     const signupEmail = document.getElementById("signup-email").value;
     const signupPassword = document.getElementById("signup-password").value;
     const nameInput = document.querySelector('.signup-box input[type="text"]').value;
@@ -107,6 +108,7 @@ window.auth = async function () {
 
       if (response.ok) {
         alert(data.message);
+        // For new signups, default homepage will be used.
         window.location.assign("homepage.html");
       } else {
         console.error("Signup failed:", data);
@@ -114,7 +116,6 @@ window.auth = async function () {
       }
     } catch (err) {
       console.error("Error during signup:", err);
-
       if (err.name === 'TypeError' && err.message === 'Failed to fetch') {
         alert(
           "Network error: Check your server's CORS settings or ensure the backend is reachable."

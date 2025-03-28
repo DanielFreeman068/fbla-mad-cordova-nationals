@@ -1,5 +1,7 @@
 // profile.js
 import config from './config.js';
+import { setHomeRedirect } from './homeRedirect.js'; // Import the shared function
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const userId = getUserIdFromToken();
@@ -163,6 +165,46 @@ document.addEventListener("DOMContentLoaded", () => {
       reader.readAsDataURL(file);
     });
   }
+
+  document.getElementById("switch-home-btn").addEventListener("click", () => {
+    document.getElementById("switch-home-modal").style.display = "flex";
+});
+
+// Cancel button: close the modal
+document.getElementById("cancel-switch-home").addEventListener("click", () => {
+    document.getElementById("switch-home-modal").style.display = "none";
+});
+
+// Confirm button: call the backend to toggle homepage preference
+document.getElementById("confirm-switch-home").addEventListener("click", async () => {
+    try {
+         const token = localStorage.getItem("authToken");
+         const userId = getUserIdFromToken();
+         const res = await fetch(`${config.IP}/users/${userId}/switchHomePage`, {
+              method: "POST",
+              headers: {
+                 "Content-Type": "application/json",
+                 Authorization: `Bearer ${token}`
+              }
+         });
+         if (res.ok){
+              const data = await res.json();
+              // Update localStorage for immediate use
+              localStorage.setItem("alternateHomePage", data.alternateHomePage.toString());
+              // Call our shared function to update the home link accordingly
+              setHomeRedirect();
+              alert("Homepage switched successfully to " + (data.alternateHomePage ? "alternate" : "default") + " version.");
+         } else {
+              alert("Failed to switch homepage.");
+         }
+    } catch(err){
+         console.error(err);
+         alert("Error switching homepage.");
+    }
+    document.getElementById("switch-home-modal").style.display = "none";
+});
+
+
   
   document.getElementById("edit-avatar-btn").addEventListener("click", () => {
     window.location.href = "avatar.html";

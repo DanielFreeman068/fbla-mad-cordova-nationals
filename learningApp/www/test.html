@@ -9,14 +9,14 @@
 <body>
     <div class="navigation">
         <ul>
-            <li class="list">
+            <li>
                 <a href="shop.html">
-                    <span class="icon">
-                        <ion-icon name="storefront-outline"></ion-icon>
-                    </span>
-                    <span class="text">Shop</span>
+                  <span class="icon">
+                    <ion-icon name="storefront-outline"></ion-icon>
+                  </span>
+                  <span class="text">Shop</span>
                 </a>
-            </li>
+              </li>
             <li class="list active">
                 <a href="test.html">
                     <span class="icon">
@@ -26,13 +26,14 @@
                 </a>
             </li>            
             <li class="list">
-                <a href="homepage.html">
-                    <span class="icon">
-                        <ion-icon name="home-outline"></ion-icon>
-                    </span>
-                    <span class="text">Home</span>
+                <a id="home" href="homepage.html">
+                  <span class="icon">
+                    <ion-icon name="home-outline"></ion-icon>
+                  </span>
+                  <span class="text">Home</span>
                 </a>
-            </li>
+              </li>
+              
             <li class="list">
                 <a href="games.html">
                     <span class="icon">
@@ -63,7 +64,18 @@
             <a href="./categories.html" class="play-link">Begin Testing</a>
         </div>
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+
+    <script type="module" src="./js/homeRedirect.js"></script>
+    <script type="module">
+        import { setHomeRedirect } from './js/homeRedirect.js';
+        document.addEventListener("DOMContentLoaded", () => {
+          setHomeRedirect();
+        });
+      </script>
+      
+      <script type="module" src="./js/test.js"></script>
+      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

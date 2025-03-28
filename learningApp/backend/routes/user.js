@@ -184,5 +184,30 @@ router.post("/:id/avatar", authMiddleware, async (req, res) => {
   }
 });
 
+// POST /users/:id/switchHomePage
+router.post("/:id/switchHomePage", authMiddleware, async (req, res) => {
+  try {
+    if (req.params.id !== req.user.id) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    // Toggle the alternateHomePage field
+    user.alternateHomePage = !user.alternateHomePage;
+    await user.save();
+
+    return res.status(200).json({
+      message: "Homepage preference updated successfully",
+      alternateHomePage: user.alternateHomePage
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Server error" });
+  }
+});
+
+
 
 module.exports = router;

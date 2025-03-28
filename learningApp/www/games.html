@@ -26,13 +26,13 @@
                 </a>
             </li>            
             <li class="list">
-                <a href="homepage.html">
-                    <span class="icon">
-                        <ion-icon name="home-outline"></ion-icon>
-                    </span>
-                    <span class="text">Home</span>
+                <a id="home" href="homepage.html">
+                  <span class="icon">
+                    <ion-icon name="home-outline"></ion-icon>
+                  </span>
+                  <span class="text">Home</span>
                 </a>
-            </li>
+              </li>
             <li class="list active">
                 <a href="games.html">
                     <span class="icon">
@@ -82,7 +82,9 @@
             </div>
         </div>
     </div>
-    <script>
+    <script type="module" src="./js/homeRedirect.js"></script>
+
+    <script type="module">
         const cards = document.querySelectorAll('.game-card');
         const prevLink = document.querySelector('.prev-link');
         const nextLink = document.querySelector('.next-link');
@@ -113,6 +115,14 @@
             updateSlides((currentIndex + 1) % cards.length);
         });
     </script>
+
+<script type="module">
+    import { setHomeRedirect } from './js/homeRedirect.js';
+    document.addEventListener("DOMContentLoaded", () => {
+      setHomeRedirect();
+    });
+  </script>
+  
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

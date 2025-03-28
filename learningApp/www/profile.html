@@ -128,12 +128,23 @@
     <!-- New Edit Avatar Button -->
     <div class="avatar-btn-container">
         <button id="edit-avatar-btn" class="edit-avatar-btn">Edit Avatar</button>
+        <!-- New Switch Home Page Button -->
+        <button id="switch-home-btn" class="switch-home-btn">Switch Home Page</button>
     </div>
+    
+    <!-- New Modal for Switching Home Page -->
+    <div id="switch-home-modal" class="modal">
+        <div class="modal-content">
+          <h2>Would you like to switch up your homepage?</h2>
+          <button id="confirm-switch-home">Yes</button>
+          <button id="cancel-switch-home">No</button>
+        </div>
+      </div>
 
     <input type="file" id="banner-upload" style="display: none;">
     <input type="file" id="profile-upload" style="display: none;">
 
-    <script>
+    <script type="module">
         const list = document.querySelectorAll('.list');
 
         function activeLink(){
@@ -144,6 +155,12 @@
 
         list.forEach((item) =>
             item.addEventListener('click', activeLink));
+
+            import { setHomeRedirect } from './js/homeRedirect.js';
+  // Call it on DOMContentLoaded so the home link is updated
+  document.addEventListener("DOMContentLoaded", () => {
+    setHomeRedirect();
+  });
     </script>
     <script  type="module" src="./js/profile.js"></script>
     <script  type="module" src="./js/script.js"></script>

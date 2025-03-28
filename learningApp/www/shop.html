@@ -86,16 +86,26 @@
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
   <!-- Shop Logic -->
+  <script type="module" src="./js/homeRedirect.js"></script>
   <script type="module" src="./js/shop.js"></script>
 
+
   <!-- Nav Active Highlight Script -->
-  <script>
+  <script type="module">
+    import { setHomeRedirect } from './js/homeRedirect.js';
+  
     const list = document.querySelectorAll(".list");
     function activeLink() {
       list.forEach((item) => item.classList.remove("active"));
       this.classList.add("active");
     }
     list.forEach((item) => item.addEventListener("click", activeLink));
+  
+    // Call it on DOMContentLoaded so the home link is updated
+    document.addEventListener("DOMContentLoaded", () => {
+      setHomeRedirect();
+    });
   </script>
+  
 </body>
 </html>
