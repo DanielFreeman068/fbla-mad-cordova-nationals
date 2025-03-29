@@ -32,11 +32,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.getElementById("logout-btn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
+      // Remove the auth token from localStorage
       localStorage.removeItem("authToken");
+      // Delete all cookies (if accessible via JavaScript)
+      deleteAllCookies();
+      // Redirect to the login page
       window.location.href = "index.html";
     });
   }
 });
+
+// Helper function to delete all cookies
+function deleteAllCookies() {
+  document.cookie.split(";").forEach(cookie => {
+    const cookieName = cookie.split("=")[0].trim();
+    document.cookie = `${cookieName}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
+  });
+}
 
 window.auth = async function () {
   console.log("Auth function called");
