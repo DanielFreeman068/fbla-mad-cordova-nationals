@@ -1,61 +1,33 @@
-import config from './config.js'
-import { setHomeRedirect } from './homeRedirect.js';
+import config from './config.js';
 
-
-function setupSwitchHomeListener() {
-  const confirmSwitchBtn = document.getElementById("confirm-switch-home");
-  if (!confirmSwitchBtn) {
-    // Element doesn't exist on this page – do nothing.
-    return;
+// A helper to extract the userId from the token
+function getUserIdFromToken() {
+  const token = localStorage.getItem("authToken");
+  if (!token) return null;
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    return payload.userId;
+  } catch (err) {
+    console.error("Error decoding token:", err);
+    return null;
   }
-  confirmSwitchBtn.addEventListener("click", async () => {
-    try {
-      const token = localStorage.getItem("authToken");
-      const userId = getUserIdFromToken();
-      const res = await fetch(`${config.IP}/users/${userId}/switchHomePage`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        }
-      });
-      if (res.ok) {
-        const data = await res.json();
-        // Update localStorage for immediate use
-        localStorage.setItem("alternateHomePage", data.alternateHomePage.toString());
-        // Update the home link accordingly using our shared function
-        setHomeRedirect();
-        alert("Homepage switched successfully to " + (data.alternateHomePage ? "alternate" : "default") + " version.");
-      } else {
-        alert("Failed to switch homepage.");
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Error switching homepage.");
-    }
-    const modal = document.getElementById("switch-home-modal");
-    if (modal) {
-      modal.style.display = "none";
-    }
-  });
 }
+
 /*************************************************************
- *  InventoryManager - ONLY tracks ownedItems now
+ *  InventoryManager - now uses data fetched from the DB
  *************************************************************/
 class InventoryManager {
   constructor(allItems) {
-    // We still store the entire items object, just in case
+    // We still store the entire items object, just in case.
     this.allItems = allItems;
-    // No more 'equippedItems'
-    this.inventory = JSON.parse(localStorage.getItem("jolt-inventory")) || {
-      ownedItems: []
-    };
+    // Instead of reading from localStorage, we start with an empty list.
+    this.inventory = { ownedItems: [] };
   }
 
   addItem(item) {
     if (!this.isOwned(item.id)) {
       this.inventory.ownedItems.push(item.id);
-      this.save();
+      // You might update the UI here, but the DB is updated in your backend.
     }
   }
 
@@ -73,10 +45,6 @@ class InventoryManager {
     }
     return null;
   }
-
-  save() {
-    localStorage.setItem("jolt-inventory", JSON.stringify(this.inventory));
-  }
 }
 
 /*************************************************************
@@ -91,25 +59,38 @@ class ShopManager {
     const skins = this.createSkinsItems();
 
     // Combine them into one object
-    this.items = {
-      accessories,
-      eyewear,
-      hats,
-      skins
-    };
+    this.items = { accessories, eyewear, hats, skins };
 
-    // Pass them all into InventoryManager
+    // Pass them into InventoryManager (which now starts empty)
     this.inventoryManager = new InventoryManager(this.items);
 
-    // On initialization, fetch coin balance from backend
-    this.fetchCoinBalance();
+    // First, fetch the owned items from the database
+    this.fetchOwnedItems().then(() => {
+      // Then fetch coin balance and render the shop
+      this.fetchCoinBalance();
+      this.initShop();
+    });
+  }
 
-    // Render everything
-    this.initShop();
+  // Fetch the user’s owned items from the backend and update the InventoryManager.
+  async fetchOwnedItems() {
+    const token = localStorage.getItem("authToken");
+    const userId = getUserIdFromToken();
+    try {
+      const res = await fetch(`${config.IP}/users/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (!res.ok) throw new Error("Failed to fetch user data");
+      const user = await res.json();
+      // Update the inventory with the owned items from MongoDB.
+      this.inventoryManager.inventory.ownedItems = user.ownedItems || [];
+    } catch (error) {
+      console.error("Error fetching owned items:", error);
+    }
   }
 
   /*************************************************************
-   *  Category item creation
+   *  Category item creation (unchanged)
    *************************************************************/
   createAccessoryItems() {
     const prices = [100, 250, 500, 750];
@@ -131,11 +112,10 @@ class ShopManager {
       { id: "sword",          name: "Sword",            img: "sword.PNG" },
       { id: "teddybear",      name: "Teddy Bear",       img: "teddybear.PNG" }
     ];
-
     return accessoryData.map((baseObj, i) => ({
       ...baseObj,
       price: prices[i % prices.length],
-      rarity: rarities[i % rarities.length],
+      rarity: rarities[i % prices.length],
       category: "accessories"
     }));
   }
@@ -154,7 +134,7 @@ class ShopManager {
     return eyewearData.map((baseObj, i) => ({
       ...baseObj,
       price: prices[i % prices.length],
-      rarity: rarities[i % rarities.length],
+      rarity: rarities[i % prices.length],
       category: "eyewear"
     }));
   }
@@ -179,7 +159,7 @@ class ShopManager {
     return hatsData.map((baseObj, i) => ({
       ...baseObj,
       price: prices[i % prices.length],
-      rarity: rarities[i % rarities.length],
+      rarity: rarities[i % prices.length],
       category: "hats"
     }));
   }
@@ -201,7 +181,7 @@ class ShopManager {
     return skinsData.map((baseObj, i) => ({
       ...baseObj,
       price: prices[i % prices.length],
-      rarity: rarities[i % rarities.length],
+      rarity: rarities[i % prices.length],
       category: "skins"
     }));
   }
@@ -291,6 +271,7 @@ class ShopManager {
     // Item details
     const detailsEl = document.createElement("div");
     detailsEl.className = "item-details";
+    // Check if the item is owned based on the DB data fetched earlier.
     const isAlreadyOwned = this.inventoryManager.isOwned(item.id);
     detailsEl.innerHTML = `
       <h4 class="item-name">${item.name}</h4>
@@ -364,7 +345,7 @@ class ShopManager {
       }
       // Update coin counter with backend response
       coinEl.textContent = data.coins.toLocaleString();
-      // Mark item as purchased locally
+      // Update the local owned items based on the purchase response from the backend.
       this.inventoryManager.addItem(item);
       this.refreshItemCard(item.id);
     } catch (error) {
