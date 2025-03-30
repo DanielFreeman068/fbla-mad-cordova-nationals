@@ -187,6 +187,7 @@ function endGame() {
     document.querySelector('.game-over').style.display = 'block';
     document.querySelector('.question-container').style.display = 'none';
     document.querySelector('.final-time').textContent = finalTime;
+    document.querySelector('.coinsEarned').textContent = finalTime;
   
     // Save final time
     recordTimerTimeOnServer(finalTime);

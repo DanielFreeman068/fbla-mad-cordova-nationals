@@ -171,7 +171,7 @@ class TicTacToeGame {
         setTimeout(() => {
             messageDisplay.textContent = '';
             messageDisplay.className = 'message';
-        }, 3000);
+        }, 5000);
     }
 
     handleCellClick(cell) {
@@ -238,7 +238,7 @@ class TicTacToeGame {
             if (this.checkWin()) {
                 this.xScore++;
                 document.getElementById('x-score').textContent = this.xScore;
-                this.displayMessage('You win!', 'success');
+                this.displayMessage('You win! Coins Earned: 25', 'success');
                 updateXP(50);   
                 // 1) CALL OUR NEW FUNCTION to record the win on server
                 this.recordWinOnServer();

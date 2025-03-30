@@ -38,10 +38,10 @@ router.post("/score", authMiddleware, async (req, res) => {
     }
 
     // Calculate coins based on finalScore
-    const coinsEarned = finalScore; // Example: 1 coin per score point (you can change this logic)
+    const earnedCoins = Math.floor(finalTime / 40);
 
     // Update user's coins and jeopardyScore
-    user.coins += coinsEarned;
+    user.coins += earnedCoins;
     user.jeopardyScore = Math.max(user.jeopardyScore, finalScore); // or user.jeopardyScore = finalScore
 
     await user.save();

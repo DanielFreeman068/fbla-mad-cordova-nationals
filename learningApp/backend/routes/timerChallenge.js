@@ -36,7 +36,7 @@ router.post("/time", authMiddleware, async (req, res) => {
     }
 
     // Calculate coins based on finalTime: 1 coin per second
-    const earnedCoins = Math.floor(finalTime / 40);
+    const earnedCoins = finalTime;
 
     // If you want to store the BEST (longest) time:
     user.timerChallengeTime = Math.max(user.timerChallengeTime, finalTime);

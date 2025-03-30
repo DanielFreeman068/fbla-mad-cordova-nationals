@@ -83,6 +83,10 @@ body {
     font-size: 18px;
 }
 
+.game-over-text {
+    color: white;
+}
+
 .question-btn.answered {
     background-image: linear-gradient(to right,
             #ccc, #ccc);

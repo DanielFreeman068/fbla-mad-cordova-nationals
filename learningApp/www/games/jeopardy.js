@@ -338,6 +338,7 @@ if (button) {
         document.getElementById('gameBoard').style.display = 'none';
         document.getElementById('gameOver').style.display = 'block';
         document.getElementById('finalScore').textContent = score;
+        document.getElementById('earnedCoins').textContent = Math.floor(score / 40);
       
         // Save final Jeopardy score
         recordJeopardyScoreOnServer(score);
