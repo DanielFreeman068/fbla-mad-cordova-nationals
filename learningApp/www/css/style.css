@@ -220,7 +220,7 @@ input:last-of-type{
 
 .social-container {
     position: fixed;
-    bottom: 3%;
+    bottom: 0; /* Keep it fixed at the bottom */
     left: 50%;
     transform: translateX(-50%);
     color: white;
@@ -229,6 +229,8 @@ input:last-of-type{
     flex-direction: column;
     text-align: center;
     gap: 10px;
+    z-index: 1000;
+    margin-bottom: 1rem;
 }
 
 .social-header {
