@@ -1,5 +1,5 @@
 const config = {
-    IP: "https://vacation-over-cl-small.trycloudflare.com"
+    IP: "https://api.joltlearningapp.xyz"
     // IP: "http://localhost:3000"
   };
 
