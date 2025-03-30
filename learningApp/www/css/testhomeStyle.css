@@ -375,7 +375,7 @@ svg {
     align-items: center;
     width: 100%;
     position: relative;
-    margin-top: 70px; /* Adjust as needed to place below header */
+    margin-top: 40px; /* Adjust as needed to place below header */
 }
 
   /* Avatar Preview Area */
@@ -394,7 +394,7 @@ svg {
 .info-container {
     width: 90%;
     max-width: 400px;
-    margin: 0px auto 0; /* 20px top margin to separate from avatar */
+    margin: -30px auto 0 auto; /* 20px top margin to separate from avatar */
     padding: 10px;
     text-align: center;
 }
@@ -434,7 +434,7 @@ svg {
     border: none;
     cursor: pointer;
     color: #ffffff;
-    margin-top: 20px; /* space above play button */
+    margin-top: 0px; /* space above play button */
     position: relative;  /* no absolute positioning */
 }
 
