@@ -29,7 +29,7 @@ router.post("/win", authMiddleware, async (req, res) => {
     }
 
     user.ticTacToeWins += 1;
-    user.coins += 5;
+    user.coins += 25;
 
     await user.save();
 

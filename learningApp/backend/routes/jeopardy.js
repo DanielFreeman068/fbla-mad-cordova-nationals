@@ -23,35 +23,38 @@ function authMiddleware(req, res, next) {
 /**
  * POST /jeopardy/score
  * Expects { finalScore: number } in the body
- * Updates the user's "jeopardyScore" in MongoDB
+ * Updates the user's "jeopardyScore" and "coins" in MongoDB
  */
 router.post("/score", authMiddleware, async (req, res) => {
-    try {
-      const { finalScore } = req.body;
-      if (typeof finalScore !== "number") {
-        return res.status(400).json({ message: "Invalid or missing finalScore" });
-      }
-  
-      const user = await User.findById(req.user.id);
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
-      user.coins += 25;
-
-      user.jeopardyScore = Math.max(user.jeopardyScore, finalScore); // or user.jeopardyScore = finalScore
-      await user.save();
-  
-      return res.status(200).json({
-        message: "Jeopardy score updated",
-        jeopardyScore: user.jeopardyScore,
-        coins: user.coins, // Return coins as well
-
-      });
-    } catch (err) {
-      console.error("Error updating Jeopardy score:", err);
-      return res.status(500).json({ message: "Server error" });
+  try {
+    const { finalScore } = req.body;
+    if (typeof finalScore !== "number") {
+      return res.status(400).json({ message: "Invalid or missing finalScore" });
     }
-  });
-  
+
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Calculate coins based on finalScore
+    const coinsEarned = finalScore; // Example: 1 coin per score point (you can change this logic)
+
+    // Update user's coins and jeopardyScore
+    user.coins += coinsEarned;
+    user.jeopardyScore = Math.max(user.jeopardyScore, finalScore); // or user.jeopardyScore = finalScore
+
+    await user.save();
+
+    return res.status(200).json({
+      message: "Jeopardy score and coins updated",
+      jeopardyScore: user.jeopardyScore,
+      coins: user.coins, // Return coins as well
+    });
+  } catch (err) {
+    console.error("Error updating Jeopardy score:", err);
+    return res.status(500).json({ message: "Server error" });
+  }
+});
 
 module.exports = router;

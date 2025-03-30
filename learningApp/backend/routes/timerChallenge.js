@@ -35,20 +35,21 @@ router.post("/time", authMiddleware, async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
+    // Calculate coins based on finalTime: 1 coin per second
+    const earnedCoins = Math.floor(finalTime / 40);
+
     // If you want to store the BEST (longest) time:
     user.timerChallengeTime = Math.max(user.timerChallengeTime, finalTime);
-    user.coins += 25;
 
-    // If you prefer storing the LATEST time:
-    // user.timerChallengeTime = finalTime;
+    // Add earned coins based on time (1 coin per second)
+    user.coins += earnedCoins;
 
     await user.save();
 
     return res.status(200).json({
       message: "Timer challenge time updated",
       timerChallengeTime: user.timerChallengeTime,
-      coins: user.coins, // Return coins as well
-
+      coins: user.coins, // Return updated coins count
     });
   } catch (err) {
     console.error("Error updating timer challenge time:", err);
