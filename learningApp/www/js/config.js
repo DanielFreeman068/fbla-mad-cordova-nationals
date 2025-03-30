@@ -1,5 +1,5 @@
 const config = {
-    IP: "https://slovak-enabling-frankfurt-biggest.trycloudflare.com"
+    IP: "https://vacation-over-cl-small.trycloudflare.com"
     // IP: "http://localhost:3000"
   };
 
