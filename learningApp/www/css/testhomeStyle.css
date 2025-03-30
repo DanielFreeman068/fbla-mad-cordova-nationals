@@ -18,7 +18,7 @@
 /* Header (JOLT Logo) - moved lower */
 .headerText {
     position: absolute;
-    top: 130px;
+    top: 100px;
     left: 50%;
     transform: translateX(-50%);
     font-family: bubble;
@@ -46,7 +46,7 @@ body {
    -------------------------- */
    #coins-container {
     position: absolute;
-    top: 73px;
+    top: 43px;
     left: 0px; /* Reduced margin to be more flush left */
     display: flex;
     align-items: center;
@@ -104,7 +104,7 @@ body {
    ------------------------------ */
 .top-right-profile {
     position: absolute;
-    top: 60px;
+    top: 30px;
     right: 20px;
     z-index: 100;
 }
@@ -375,7 +375,7 @@ svg {
     align-items: center;
     width: 100%;
     position: relative;
-    margin-top: 40px; /* Adjust as needed to place below header */
+    margin-top: 10px; /* Adjust as needed to place below header */
 }
 
   /* Avatar Preview Area */
@@ -392,9 +392,9 @@ svg {
 
 /* XP Bar Container: center it below the avatar preview */
 .info-container {
-    width: 90%;
-    max-width: 400px;
-    margin: -30px auto 0 auto; /* 20px top margin to separate from avatar */
+    width: 70%;
+    max-width: 350px;
+    margin: 0 auto;
     padding: 10px;
     text-align: center;
 }
@@ -426,11 +426,11 @@ svg {
 
 /* Adjust play button so it sits in the document flow */
 .play-btn {
-    height: 60px;
-    width: 150px;
+    height: 50px;
+    width: 140px;
     border-radius: 50px;
     background: linear-gradient(45deg, #4a90e2, #7b68ee);
-    font-size: 30px;
+    font-size: 25px;
     border: none;
     cursor: pointer;
     color: #ffffff;

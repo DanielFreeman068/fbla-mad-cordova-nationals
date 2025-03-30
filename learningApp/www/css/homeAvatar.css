@@ -1,0 +1,605 @@
+/* Base Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: rgb(96, 98, 238);
+    background-image: url('../images/dusk-background.svg');
+    background-repeat: no-repeat;
+    background-size: 100vh;  /* as in homeStyles.css */
+    background-attachment: fixed;
+    font-family: 'Kanit', sans-serif;
+    color: #fff;
+    overflow-x: hidden;
+    overflow-y: auto;   /* allow vertical scrolling */
+    /* Do not use display: flex; let content flow normally */
+  }
+  
+  
+  .content-wrapper {
+    padding: 100px 15px 10px; /* increased bottom padding from 20px to 90px */
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  
+  /* Header */
+  .avatar-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #2b6cb0 0%, #1a365d 100%);
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    text-align: center;
+  }
+  
+  .avatar-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  /* Avatar Preview Area */
+  .avatar-preview-wrapper {
+    display: flex;
+    justify-content: center;
+    height: 350px;
+  }
+  
+  /* Extended preview container – note: overflow is now visible so accessories aren’t clipped */
+  .avatar-preview {
+    position: relative;
+    width: 320px;
+    height: 430px;
+    margin: 0 auto;
+    top: -40px;
+    overflow: visible;
+    transform: scale(0.65);
+  }
+  
+  /* --- Base, Color, and Skin Layers --- */
+  /* These layers now use a smaller scale so they don’t take up the entire container.
+     This leaves room for accessories (which may be shifted far left) without being clipped. */
+     #base-layer,
+     #color-layer {
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 320px;
+       height: 430px;
+       object-fit: cover;
+       transform: scale(0.85);
+     }
+     
+  
+  /* Skin layer: made a bit smaller and adjusted so the bottom isn’t cut off.
+     (Translation removed from the vertical axis to keep the bottom visible.) */
+     #skin-layer {
+      position: absolute;
+      bottom: 0;                    /* Align the bottom of the image with the container */
+      left: 50%;                    /* Center horizontally */
+      transform: translate(calc(-50% + 9px), -52px);
+      height: 90%;                 /* Scale the image so its height fits the container */
+      width: auto;                  /* Maintain aspect ratio */
+      object-fit: contain;          /* Ensure the entire image is visible */
+      object-position: bottom center;  /* Ensure the bottom of the image is prioritized */
+    }
+    
+  
+  /* --- Accessory Layer --- */
+  #accessory-layer {
+    position: absolute;
+    width: 100px;  /* slightly bigger */
+    height: auto;
+    bottom: 60px; /* base vertical offset */
+    left: 0px;    /* flush to the left */
+    object-fit: contain;
+    /* Fine-tune the position: move 2px further left and 3px upward */
+    transform: translate(-18px, -12px);
+    /* Ensure the image aligns to the left and bottom of its box */
+    object-position: left bottom;
+  }
+  
+  
+  #eyewear-layer {
+    position: absolute;
+    object-fit: contain;
+  }
+  
+  /* For cyberpunk.png and superhero_mask.png */
+  .eyewear-cyberpunk {
+    width: 173px;
+    height: auto;
+    top: 128px;
+    left: calc(50% - 87px);
+    transform: translate(2px, 3px);
+    object-position: center bottom;
+  }
+  
+  /* For round_glasses.png and sunglasses.png */
+  .eyewear-round {
+    width: 130px;
+    height: auto;
+    top: 139px;
+    left: calc(50% - 50px);
+    transform: translate(2px, 3px);
+    object-position: center bottom;
+  }
+  
+  /* For scuba_goggles.png */
+  .eyewear-scuba {
+    width: 190px;
+    height: auto;
+    top: 62px;
+    left: calc(50% - 106px);
+    transform: translate(2px, 3px);
+    object-position: center bottom;
+  }
+  
+  /* For monocle.png */
+  .eyewear-monocle {
+    width: 92px;
+    height: auto;
+    top: 126px;
+    /* Note: calc(50% - -8px) is equivalent to calc(50% + 8px) */
+    left: calc(50% + 8px);
+    transform: translate(2px, 3px);
+    object-position: center bottom;
+  }
+  
+  
+/* ----- Custom Hat Classes ----- */
+
+/* For plant_sprout.png */
+.hat-plant_sprout {
+  position: absolute;
+  width: 50px;
+  height: auto;
+  top: -21px;
+  left: calc(50% - 35px);
+  object-fit: contain;
+}
+
+/* For spartan_mask.png */
+.hat-spartan_mask {
+  position: absolute;
+  width: 134px;
+  height: auto;
+  top: 64px;
+  left: calc(50% - 59px);
+  object-fit: contain;
+}
+
+/* For beanie.png */
+.hat-beanie {
+  position: absolute;
+  width: 116px;
+  height: auto;
+  top: 56px;
+  left: calc(50% - 49px);
+  object-fit: contain;
+}
+
+/* For cap.png */
+.hat-cap {
+  position: absolute;
+  width: 126px;
+  height: auto;
+  top: 43px;
+  left: calc(50% - 53px);
+  object-fit: contain;
+}
+
+/* For cowboy_hat.png */
+.hat-cowboy_hat {
+  position: absolute;
+  width: 200px;
+  height: auto;
+  top: 13px;
+  left: calc(50% - 90px);
+  object-fit: contain;
+}
+
+/* For graduation_cap.png */
+.hat-graduation_cap {
+  position: absolute;
+  width: 168px;
+  height: auto;
+  top: 43px;
+  left: calc(50% - 90px);
+  object-fit: contain;
+}
+
+/* For heart_clip.png */
+/* Note: calc(50% - -15px) is equivalent to calc(50% + 15px) */
+.hat-heart_clip {
+  position: absolute;
+  width: 80px;
+  height: auto;
+  top: 74px;
+  left: calc(50% + 15px);
+  object-fit: contain;
+}
+
+/* For magic_hat.png */
+.hat-magic_hat {
+  position: absolute;
+  width: 144px;
+  height: auto;
+  top: -30px;
+  left: calc(50% - 63px);
+  object-fit: contain;
+}
+
+/* For military_helmet.png */
+.hat-military_helmet {
+  position: absolute;
+  width: 158px;
+  height: auto;
+  top: 57px;
+  left: calc(50% - 67px);
+  object-fit: contain;
+}
+
+/* For pirate_hat.png */
+.hat-pirate_hat {
+  position: absolute;
+  width: 180px;
+  height: auto;
+  top: 39px;
+  left: calc(50% - 73px);
+  object-fit: contain;
+}
+
+/* For sunhat.png */
+.hat-sunhat {
+  position: absolute;
+  width: 299px;
+  height: auto;
+  top: 39px;
+  left: calc(50% - 137px);
+  object-fit: contain;
+}
+
+/* For tophat.png */
+.hat-tophat {
+  position: absolute;
+  width: 165px;
+  height: auto;
+  top: 14px;
+  left: calc(50% - 75px);
+  object-fit: contain;
+}
+
+    /* --- Face Layer --- */
+  #face-layer {
+    position: absolute;
+    bottom: 209px;
+    left: 55%;
+    transform: translateX(-50%);
+    width: 118px;
+    height: 430px;
+    object-fit: contain;
+    object-position: bottom center;
+  }
+  
+  .items-selector {
+    margin-top: 10px;
+    max-height: calc(100vh - 560px);
+    top: -70px;
+    position: relative;
+    padding-right: 5px;
+  }
+  
+  /* Tabs */
+  .tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+  }
+  
+  .tab-button {
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    padding: 5px 10px;
+    color: #fff;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .tab-button.active,
+  .tab-button:hover {
+    background: #fff;
+    color: #2b6cb0;
+  }
+  
+  /* Clear Selection Button
+  .clear-btn {
+    background: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    color: #2b6cb0;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background 0.2s ease;
+  }
+  
+  .clear-btn:hover {
+    background: #e0e0e0;
+  } */
+  
+  /* Items Grid */
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* more columns since images are small */
+    gap: 5px;
+    padding: 20px 5px;
+  }
+  
+  /* Each Item Card */
+  .item-card {
+    background: linear-gradient(145deg, #2d3748 0%, #1a202c 100%);
+    border-radius: 6px;
+    overflow: hidden;
+    text-align: center;
+    padding: 3px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    position: relative;
+
+  }
+  
+  .item-card img {
+    width: 100%;
+    height: 40px;  /* smaller images */
+    object-fit: contain;
+  }
+  
+  .item-card:hover {
+    transform: scale(1.1);
+  }
+  
+  .navigation {
+    min-width: 100%;
+    height: 70px;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.content {
+    padding: 16px;
+}
+
+.sticky {
+    position: fixed;
+    bottom: -1;
+    width: 100%;
+}
+
+.sticky + .content {
+    padding-top: 60px;
+}
+
+.navigation ul {
+    display: flex;
+    width: 350px;
+}
+
+.navigation ul li {
+    position: relative;
+    list-style: none;
+    width: 70px;
+    height: 70px;
+    z-index: 1;
+}
+
+.navigation ul li a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+
+.navigation ul li a .icon {
+    position: relative;
+    display: block;
+    line-height: 75px;
+    font-size: 1.5em;
+    text-align: center;
+    color: rgb(91, 178, 255);
+}
+
+.navigation ul li.active a .icon {
+    transform: translateY(-32px);
+}
+
+.navigation ul li a .text {
+    position: absolute;
+    color: rgb(91, 178, 255);
+    font-weight: 400;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.navigation ul li.active a .text {
+    opacity: 1;
+    transform: translateY(10px);
+}
+
+.indicator {
+    position: absolute;
+    top: -50%;
+    width: 70px;
+    height: 70px;
+    background: #29bdfd;
+    border-radius: 50%;
+    border: 6px solid transparent;
+    border-image: linear-gradient(45deg, rgb(0, 195, 255) , yellow);
+    border-image-slice: 1;
+}
+
+#border-gradient-rounded {
+    border: 4px solid transparent;
+    border-radius: 50%;
+    background: 
+        linear-gradient(to right, white, #e1f2ff), 
+        linear-gradient(190deg, rgb(110, 211, 255),rgb(91, 178, 255));
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+}
+
+.indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -21px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top-right-radius: 20px;
+    box-shadow: 1px -10px 0 0 var(--clr);
+}
+
+.indicator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -21px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top-left-radius: 20px;
+    box-shadow: -1px -10px 0 0 var(--clr);
+}
+
+.navigation ul li:nth-child(1).active ~ .indicator {
+    transform: translateX(calc(70px * 0))
+}
+
+.navigation ul li:nth-child(2).active ~ .indicator {
+    transform: translateX(calc(70px * 1))
+}
+
+.navigation ul li:nth-child(3).active ~ .indicator {
+    transform: translateX(calc(70px * 2))
+}
+
+.navigation ul li:nth-child(4).active ~ .indicator {
+    transform: translateX(calc(70px * 3))
+}
+
+.navigation ul li:nth-child(5).active ~ .indicator {
+    transform: translateX(calc(70px * 4))
+}
+
+/* Action Buttons Container */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Clear Selection & Save Avatar Buttons */
+.clear-btn, .save-avatar-btn {
+  background: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  color: #2b6cb0;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.clear-btn:hover, .save-avatar-btn:hover {
+  background: #e0e0e0;
+}
+
+/* Back Button in Header */
+.back-btn {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-decoration: none;
+  font-size: 1rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 5px 10px;
+  border-radius: 5px;
+  z-index: 1100;
+}
+
+
+/* Save Avatar Modal */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2200;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.modal-content button {
+  margin: 10px;
+  padding: 8px 16px;
+  background: #fff;
+  color: #2b6cb0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.selected-checkmark {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #2b6cb0;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
