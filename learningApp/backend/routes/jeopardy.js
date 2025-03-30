@@ -38,7 +38,7 @@ router.post("/score", authMiddleware, async (req, res) => {
     }
 
     // Calculate coins based on finalScore
-    const earnedCoins = Math.floor(finalTime / 40);
+    const earnedCoins = Math.floor(finalScore / 40);
 
     // Update user's coins and jeopardyScore
     user.coins += earnedCoins;
