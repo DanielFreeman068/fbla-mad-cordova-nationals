@@ -101,7 +101,7 @@ body {
 }
 
 .form-section {
-    height: 500px;
+    height: 410px;
     width: 700px;
     padding: 20px 0;
     display: flex;
@@ -205,6 +205,7 @@ input:last-of-type{
 /* Container for the icons */
 .social-icons {
     display: flex;
+    justify-content: center;
     gap: 20px;
 }
 
@@ -219,18 +220,12 @@ input:last-of-type{
 }
 
 .social-container {
-    position: fixed;
-    bottom: 0; /* Keep it fixed at the bottom */
-    left: 50%;
-    transform: translateX(-50%);
     color: white;
     display: flex;
     justify-content: center;
     flex-direction: column;
     text-align: center;
     gap: 10px;
-    z-index: 1000;
-    margin-bottom: 1rem;
 }
 
 .social-header {
